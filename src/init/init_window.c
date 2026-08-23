@@ -6,11 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/Window/Event.h>
-#include <SFML/Window/VideoMode.h>
-#include <SFML/Window/WindowBase.h>
 #include <stdlib.h>
 
 #include "my_struct.h"

@@ -5,10 +5,10 @@
 ** main
 */
 
-#include <stdio.h>
+#include "my_functions.h"
 
 int main(void)
 {
-    printf("Hello World!\n");
+    launch_window();
     return 0;
 }

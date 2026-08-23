@@ -8,12 +8,10 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/Window/Event.h>
 
 typedef struct window_s {
     sfRenderWindow *window;
-    sfEvent *event;
+    sfEvent event;
 } window_t;
 
 #endif

@@ -7,7 +7,15 @@
 
 #ifndef INCLUDED_MY_FUNCTIONS_H
     #define INCLUDED_MY_FUNCTIONS_H
+    #include "my_struct.h"
 
+/* src */
+int launch_window(void);
 
+/* init */
+window_t *init_window(void);
+
+/* free */
+void free_window(window_t *w);
 
 #endif
