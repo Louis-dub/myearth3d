@@ -1,2 +1,4 @@
 *.o
 my_earth
+*.json
+.cache
