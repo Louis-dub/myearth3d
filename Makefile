@@ -15,13 +15,23 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS	:=	-Iinclude
-
-LDFLAGS	:=	-l csfml-graphics -l csfml-window -lcsfml-system -lcsfml-audio -lm
+CFLAGS_BASE	:=	-Iinclude -g
+LDFLAGS_BASE :=	-l csfml-graphics -l csfml-window -lcsfml-system -lcsfml-audio -lm
 
 RM := rm -fr
 
+# Flags par défaut
+CFLAGS = $(CFLAGS_BASE)
+LDFLAGS = $(LDFLAGS_BASE)
+
 all: $(NAME)
+
+# Cible ASan : on redéfinit explicitement les variables pour cette règle
+asan: CFLAGS = $(CFLAGS_BASE) -fsanitize=address
+asan: LDFLAGS = $(LDFLAGS_BASE) -fsanitize=address
+asan: export LSAN_OPTIONS = use_stacks=0:use_registers=0
+asan: clean $(NAME)
+	./$(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
@@ -32,7 +42,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean
-	$(MAKE) all
+re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re asan
