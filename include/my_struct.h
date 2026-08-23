@@ -12,6 +12,7 @@
 typedef struct window_s {
     sfRenderWindow *window;
     sfEvent event;
+    sfVector2u size;
 } window_t;
 
 #endif

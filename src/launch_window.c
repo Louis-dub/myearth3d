@@ -19,6 +19,7 @@ int launch_window(void)
         while (sfRenderWindow_pollEvent(w->window, &w->event))
             if (w->event.type == sfEvtClosed)
                 sfRenderWindow_close(w->window);
+        w->size = sfRenderWindow_getSize(w->window);
         sfRenderWindow_display(w->window);
     }
     free_window(w);
