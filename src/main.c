@@ -12,3 +12,4 @@ int main(void)
     launch_window();
     return 0;
 }
+
