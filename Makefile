@@ -13,7 +13,7 @@ SRC = $(wildcard src/*.c) \
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = clang
 
 CFLAGS_BASE	:=	-Iinclude -g
 LDFLAGS_BASE :=	-l csfml-graphics -l csfml-window -lcsfml-system -lcsfml-audio -lm

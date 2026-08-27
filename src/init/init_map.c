@@ -9,7 +9,7 @@
 
 #include "my_struct.h"
 
-map_t *init_map()
+map_t *init_map(void)
 {
     map_t *map = malloc(sizeof(map_t));
 
@@ -20,5 +20,6 @@ map_t *init_map()
             map->map_3d[i][j] = 0;
     }
     map->map_2d = malloc(sizeof(sfVector2f) * 15 * 15);
+    map->angle = 30;
     return map;
 }
