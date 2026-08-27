@@ -11,8 +11,10 @@
 
 void free_map(map_t *map)
 {
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < map->size; i++) {
         free(map->map_3d[i]);
+        free(map->map_2d[i]);
+    }
     free(map->map_3d);
     free(map->map_2d);
     free(map);

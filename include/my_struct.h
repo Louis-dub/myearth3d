@@ -11,8 +11,9 @@
 
 typedef struct map_s {
     int **map_3d;
-    sfVector2f *map_2d;
+    sfVector2f **map_2d;
     float angle;
+    int size;
 } map_t;
 
 typedef struct window_s {
