@@ -9,6 +9,11 @@
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
 
+typedef struct map_s {
+    int **map_3d;
+    sfVector2f *map_2d;
+} map_t;
+
 typedef struct window_s {
     sfRenderWindow *window;
     sfEvent event;
