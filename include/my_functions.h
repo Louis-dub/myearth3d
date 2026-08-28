@@ -7,6 +7,7 @@
 
 #ifndef INCLUDED_MY_FUNCTIONS_H
     #define INCLUDED_MY_FUNCTIONS_H
+    #include <SFML/Graphics.h>
     #include "my_struct.h"
 
 /* src */
@@ -24,5 +25,7 @@ void free_map(map_t *map);
 
 /* display_map */
 void calculate_map2d(map_t *map);
+void display_map(sfRenderWindow *w, map_t *map);
+sfVertexArray *create_square(int x, int y, sfVector2f **map);
 
 #endif
