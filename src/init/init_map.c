@@ -8,22 +8,46 @@
 #include <SFML/System/Vector2.h>
 #include <stdlib.h>
 
+#include "my_functions.h"
 #include "my_struct.h"
+
+static square_t **create_squares(map_t *map)
+{
+    int len = (map->size - 1) * (map->size - 1);
+    square_t **squares = malloc(sizeof(square_t*) * (len + 1));
+
+    squares[len] = NULL;
+    int index = 0;
+    for (int i = 0; i < map->size - 1; i++) {
+        for (int j = 0; j < map->size; j++) {
+            squares[index] = init_square(&map->map_2d[i][j],
+                                         &map->map_2d[i + 1][j],
+                                         &map->map_2d[i][j + 1],
+                                         &map->map_2d[i + 1][j + 1]);
+            index++;
+        }
+    }
+    return squares;
+}
 
 map_t *init_map(void)
 {
     map_t *map = malloc(sizeof(map_t));
 
     map->size = 2;
-    map->map_3d = malloc(sizeof(int*) * map->size);
+    map->map_3d = malloc(sizeof(int*) * (map->size + 1));
+    map->map_3d[map->size] = NULL;
     for (int i = 0; i < map->size; i++) {
-        map->map_3d[i] = malloc(sizeof(int) * map->size);
+        map->map_3d[i] = malloc(sizeof(int) * (map->size));
         for (int j = 0; j < map->size; j++)
             map->map_3d[i][j] = 0;
     }
-    map->map_2d = malloc(sizeof(sfVector2f*) * map->size);
+    map->map_2d = malloc(sizeof(sfVector2f*) * (map->size + 1));
+    map->map_2d[map->size] = NULL;
     for (int i = 0; i < map->size; i++)
         map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
     map->angle = 30;
+    calculate_map2d(map);
+    map->squares = create_squares(map);
     return map;
 }
