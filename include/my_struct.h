@@ -10,11 +10,12 @@
     #include <SFML/Graphics.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/Graphics/Vertex.h>
+#include <SFML/System/Vector2.h>
 
 typedef struct square_s {
-    int p[4];
-    sfVertex vSquare[4];
-    sfVertex vLine[4];
+    sfVector2f p[4];
+    sfVertex v_square[4];
+    sfVertex v_line[4];
     sfVertexArray *square;
     sfVertexArray *lines[4];
 } square_t;

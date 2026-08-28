@@ -14,16 +14,16 @@ map_t *init_map(void)
 {
     map_t *map = malloc(sizeof(map_t));
 
-    map->map_3d = malloc(sizeof(int*) * 15);
-    for (int i = 0; i < 15; i++) {
-        map->map_3d[i] = malloc(sizeof(int) * 15);
-        for (int j = 0; j < 15; j++)
+    map->size = 2;
+    map->map_3d = malloc(sizeof(int*) * map->size);
+    for (int i = 0; i < map->size; i++) {
+        map->map_3d[i] = malloc(sizeof(int) * map->size);
+        for (int j = 0; j < map->size; j++)
             map->map_3d[i][j] = 0;
     }
-    map->map_2d = malloc(sizeof(sfVector2f*) * 15 * 15);
-    for (int i = 0; i < 15; i++)
-        map->map_2d[i] = malloc(sizeof(sfVector2f) * 15);
+    map->map_2d = malloc(sizeof(sfVector2f*) * map->size);
+    for (int i = 0; i < map->size; i++)
+        map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
     map->angle = 30;
-    map->size = 15;
     return map;
 }
