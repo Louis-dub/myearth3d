@@ -19,7 +19,7 @@ static square_t **create_squares(map_t *map)
     squares[len] = NULL;
     int index = 0;
     for (int i = 0; i < map->size - 1; i++) {
-        for (int j = 0; j < map->size; j++) {
+        for (int j = 0; j < map->size - 1; j++) {
             squares[index] = init_square(&map->map_2d[i][j],
                                          &map->map_2d[i + 1][j],
                                          &map->map_2d[i][j + 1],
@@ -34,7 +34,7 @@ map_t *init_map(void)
 {
     map_t *map = malloc(sizeof(map_t));
 
-    map->size = 2;
+    map->size = 5;
     map->map_3d = malloc(sizeof(int*) * (map->size + 1));
     map->map_3d[map->size] = NULL;
     for (int i = 0; i < map->size; i++) {

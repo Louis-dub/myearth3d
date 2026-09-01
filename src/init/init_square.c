@@ -55,20 +55,20 @@ static void set_square_array(square_t *square)
 static void set_lines(square_t *square)
 {
     square->lines[0] = sfVertexArray_create();
-    sfVertexArray_append(square->lines[0], square->v_square[0]);
-    sfVertexArray_append(square->lines[0], square->v_square[1]);
+    sfVertexArray_append(square->lines[0], square->v_line[0]);
+    sfVertexArray_append(square->lines[0], square->v_line[1]);
     sfVertexArray_setPrimitiveType(square->lines[0], sfLineStrip);
     square->lines[1] = sfVertexArray_create();
-    sfVertexArray_append(square->lines[1], square->v_square[1]);
-    sfVertexArray_append(square->lines[1], square->v_square[2]);
+    sfVertexArray_append(square->lines[1], square->v_line[1]);
+    sfVertexArray_append(square->lines[1], square->v_line[3]);
     sfVertexArray_setPrimitiveType(square->lines[1], sfLineStrip);
     square->lines[2] = sfVertexArray_create();
-    sfVertexArray_append(square->lines[2], square->v_square[2]);
-    sfVertexArray_append(square->lines[2], square->v_square[3]);
+    sfVertexArray_append(square->lines[2], square->v_line[3]);
+    sfVertexArray_append(square->lines[2], square->v_line[2]);
     sfVertexArray_setPrimitiveType(square->lines[2], sfLineStrip);
     square->lines[3] = sfVertexArray_create();
-    sfVertexArray_append(square->lines[3], square->v_square[3]);
-    sfVertexArray_append(square->lines[3], square->v_square[0]);
+    sfVertexArray_append(square->lines[3], square->v_line[2]);
+    sfVertexArray_append(square->lines[3], square->v_line[0]);
     sfVertexArray_setPrimitiveType(square->lines[3], sfLineStrip);
 }
 

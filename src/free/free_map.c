@@ -18,7 +18,8 @@ void free_map(map_t *map)
     }
     free(map->map_3d);
     free(map->map_2d);
-    free(map);
     for (int i = 0; map->squares[i] != NULL; i++)
         free_square(map->squares[i]);
+    free(map->squares);
+    free(map);
 }
