@@ -12,8 +12,8 @@
 
 /* src */
 int launch_window(void);
-void calculate_map2d(map_t *map);
-void analyse_event(window_t *w);
+void calculate_map2d(map_t *map, sfVector2u *size);
+void analyse_event(window_t *w, map_t *map);
 
 /* init */
 earth_t *init_earth(void);

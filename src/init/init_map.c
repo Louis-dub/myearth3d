@@ -40,13 +40,16 @@ map_t *init_map(void)
     for (int i = 0; i < map->size; i++) {
         map->map_3d[i] = malloc(sizeof(int) * (map->size));
         for (int j = 0; j < map->size; j++)
-            map->map_3d[i][j] = 0;
+            map->map_3d[i][j] = 0.0;
     }
+    map->map_3d[2][1] = 1.0;
+    map->map_3d[3][1] = 2.0;
     map->map_2d = malloc(sizeof(sfVector2f*) * (map->size + 1));
     map->map_2d[map->size] = NULL;
     for (int i = 0; i < map->size; i++)
         map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
-    map->angle = 30;
+    map->delta1 = 90.0;
+    map->delta2 = 30.0;
     calculate_map2d(map);
     map->squares = create_squares(map);
     return map;

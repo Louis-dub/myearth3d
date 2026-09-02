@@ -18,11 +18,12 @@ typedef struct square_s {
 } square_t;
 
 typedef struct map_s {
-    int **map_3d;
+    float **map_3d;
     sfVector2f **map_2d;
-    float angle;
     int size;
     square_t **squares;
+    float delta1;
+    float delta2;
 } map_t;
 
 typedef struct window_s {
