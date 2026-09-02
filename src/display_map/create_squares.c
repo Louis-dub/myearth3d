@@ -6,7 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Color.h>
 
 sfVertexArray *create_square(int x, int y, sfVector2f **map)
 {

@@ -6,11 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Color.h>
-#include <SFML/Graphics/RectangleShape.h>
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/System/Vector2.h>
 #include <stddef.h>
 
 #include "my_functions.h"
@@ -23,7 +18,7 @@ int launch_window(void)
     while (sfRenderWindow_isOpen(earth->w->window)) {
         sfRenderWindow_clear(earth->w->window, sfBlack);
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
-            analyse_event(earth->w);
+            analyse_event(earth->w, earth->map);
         display_map(earth->w->window, earth->map);
         sfRenderWindow_display(earth->w->window);
     }

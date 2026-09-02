@@ -50,7 +50,7 @@ map_t *init_map(void)
         map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
     map->delta1 = 90.0;
     map->delta2 = 30.0;
-    calculate_map2d(map);
+    calculate_map2d(map, &(sfVector2u){800, 600});
     map->squares = create_squares(map);
     return map;
 }

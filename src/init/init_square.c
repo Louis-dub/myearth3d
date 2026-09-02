@@ -6,12 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Color.h>
-#include <SFML/Graphics/PrimitiveType.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/Graphics/Vertex.h>
-#include <SFML/Graphics/VertexArray.h>
-#include <SFML/System/Vector2.h>
 #include <stdlib.h>
 
 #include "my_struct.h"
