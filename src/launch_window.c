@@ -16,19 +16,6 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-void display_square(sfRenderWindow *w)
-{
-    sfRectangleShape *square = sfRectangleShape_create();
-
-    sfRectangleShape_setPosition(square, (sfVector2f){350, 250});
-    sfRectangleShape_setSize(square, (sfVector2f){100, 100});
-    sfRectangleShape_setOutlineThickness(square, 5.0);
-    sfRectangleShape_setOutlineColor(square, sfRed);
-    sfRectangleShape_setFillColor(square, sfTransparent);
-    sfRenderWindow_drawRectangleShape(w, square, NULL);
-    sfRectangleShape_destroy(square);
-}
-
 int launch_window(void)
 {
     earth_t *earth = init_earth();
@@ -36,9 +23,7 @@ int launch_window(void)
     while (sfRenderWindow_isOpen(earth->w->window)) {
         sfRenderWindow_clear(earth->w->window, sfBlack);
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
-            if (earth->w->event.type == sfEvtClosed)
-                sfRenderWindow_close(earth->w->window);
-        earth->w->size = sfRenderWindow_getSize(earth->w->window);
+            analyse_event(earth->w);
         display_map(earth->w->window, earth->map);
         sfRenderWindow_display(earth->w->window);
     }

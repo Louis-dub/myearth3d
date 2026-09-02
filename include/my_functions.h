@@ -13,6 +13,7 @@
 /* src */
 int launch_window(void);
 void calculate_map2d(map_t *map);
+void analyse_event(window_t *w);
 
 /* init */
 earth_t *init_earth(void);
