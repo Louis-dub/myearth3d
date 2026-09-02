@@ -6,6 +6,10 @@
 */
 
 #include <SFML/Graphics.h>
+#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/Types.h>
+#include <SFML/Graphics/View.h>
 #include <stdlib.h>
 
 #include "my_struct.h"
@@ -14,6 +18,7 @@ window_t *init_window(void)
 {
     window_t *w = malloc(sizeof(window_t));
     sfVideoMode v = {800, 600, 32};
+    w->view = sfView_createFromRect((sfFloatRect){0, 0, 800, 600});
 
     w->window = sfRenderWindow_create(
        v,
@@ -21,6 +26,7 @@ window_t *init_window(void)
        sfDefaultStyle,
        NULL
     );
+    sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
     return w;
 }

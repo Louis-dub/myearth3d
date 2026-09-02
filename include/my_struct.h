@@ -8,9 +8,6 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/Graphics/Vertex.h>
-#include <SFML/System/Vector2.h>
 
 typedef struct square_s {
     sfVector2f p[4];
@@ -32,6 +29,7 @@ typedef struct window_s {
     sfRenderWindow *window;
     sfEvent event;
     sfVector2u size;
+    sfView *view;
 } window_t;
 
 typedef struct earth_s {
