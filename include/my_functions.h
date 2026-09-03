@@ -10,17 +10,17 @@
     #include <SFML/Graphics.h>
     #include "my_struct.h"
 
-/* src */
+// src
 int launch_window(void);
 void calculate_map2d(map_t *map, sfVector2u *size);
-void analyse_event(window_t *w, map_t *map);
+void analyse_event(earth_t *earth, window_t *w);
 
-/* init */
+// init
 earth_t *init_earth(void);
 window_t *init_window(void);
 map_t *init_map(void);
 
-/* free */
+// free
 void free_earth(earth_t *earth);
 void free_window(window_t *w);
 void free_map(map_t *map);
@@ -30,5 +30,9 @@ square_t *init_square(sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfVector2f
 /* display_map */
 void display_map(sfRenderWindow *w, map_t *map);
 sfVertexArray *create_square(int x, int y, sfVector2f **map);
+
+// event_key
+void analyse_event_key_mouse(earth_t *earth, sfEvent *event);
+void resize_window(window_t *w, map_t *map);
 
 #endif

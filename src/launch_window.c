@@ -18,7 +18,7 @@ int launch_window(void)
     while (sfRenderWindow_isOpen(earth->w->window)) {
         sfRenderWindow_clear(earth->w->window, sfBlack);
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
-            analyse_event(earth->w, earth->map);
+            analyse_event(earth, earth->w);
         display_map(earth->w->window, earth->map);
         sfRenderWindow_display(earth->w->window);
     }
