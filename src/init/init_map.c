@@ -11,7 +11,7 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-static square_t **create_squares(map_t *map)
+square_t **create_squares(map_t *map)
 {
     int len = (map->size - 1) * (map->size - 1);
     square_t **squares = malloc(sizeof(square_t*) * (len + 1));
@@ -50,6 +50,7 @@ map_t *init_map(void)
         map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
     map->delta1 = 90.0;
     map->delta2 = 30.0;
+    map->zoom = 50;
     calculate_map2d(map, &(sfVector2u){800, 600});
     map->squares = create_squares(map);
     return map;
