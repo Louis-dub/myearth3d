@@ -34,7 +34,7 @@ sfVertexArray *create_square(int x, int y, sfVector2f **map);
 
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
-void resize_window(window_t *w, map_t *map);
+void resize_window(window_t *w);
 void mouse_scroll(window_t *w, map_t *map);
 
 #endif
