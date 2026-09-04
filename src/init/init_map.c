@@ -6,9 +6,7 @@
 */
 
 #include <SFML/System/Vector2.h>
-#include <math.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"

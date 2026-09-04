@@ -5,7 +5,6 @@
 ** free struct all datas
 */
 
-#include <endian.h>
 #include <stdlib.h>
 
 #include "my_functions.h"

@@ -8,7 +8,6 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
-#include <SFML/System/Vector2.h>
     #include <stdbool.h>
 
 typedef struct square_s {
