@@ -27,6 +27,6 @@ window_t *init_window(void)
     );
     sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
-    w->mouse_pressed = false;
+    w->if_mouse_pressed = false;
     return w;
 }

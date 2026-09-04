@@ -6,7 +6,9 @@
 */
 
 #include <SFML/System/Vector2.h>
+#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
@@ -48,9 +50,9 @@ map_t *init_map(void)
     map->map_2d[map->size] = NULL;
     for (int i = 0; i < map->size; i++)
         map->map_2d[i] = malloc(sizeof(sfVector2f) * map->size);
-    map->delta1 = 90.0;
-    map->delta2 = 30.0;
-    map->zoom = 50;
+    map->delta1 = 45.0;
+    map->delta2 = 25.0;
+    map->zoom = 100;
     calculate_map2d(map, &(sfVector2u){800, 600});
     map->squares = create_squares(map);
     return map;

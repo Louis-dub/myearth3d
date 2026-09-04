@@ -13,13 +13,13 @@
 static sfVector2f project_iso_point(int x, int y, float z, map_t *map, sfVector2u *size)
 {
     sfVector2f point;
-    float rx = cosh(map->delta1 * M_PI / 180) * x - sinh(map->delta1 * M_PI / 180) * y;
-    float ry = sinh(map->delta1 * M_PI / 180) * x + cosh(map->delta1 * M_PI / 180) * y;
-    float rz = sinh(map->delta2 * M_PI / 180) * ry + cosh(map->delta2 * M_PI / 180) * z;
+    float rx = cos(map->delta1 * M_PI / 180) * x - sin(map->delta1 * M_PI / 180) * y;
+    float ry = sin(map->delta1 * M_PI / 180) * x + cos(map->delta1 * M_PI / 180) * y;
+    float rz = sin(map->delta2 * M_PI / 180) * ry + cos(map->delta2 * M_PI / 180) * z;
 
-    ry = cosh(map->delta2 * M_PI / 180) * ry - sinh(map->delta2 * M_PI / 180) * z;
-    point.x = rx * map->zoom;
-    point.y = (ry - rz) * map->zoom;
+    ry = cos(map->delta2 * M_PI / 180) * ry - sin(map->delta2 * M_PI / 180) * z;
+    point.x = rx * map->zoom * 1.0;
+    point.y = (ry - rz) * map->zoom * 1.0;
     return point;
 }
 

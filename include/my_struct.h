@@ -8,6 +8,7 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
+#include <SFML/System/Vector2.h>
     #include <stdbool.h>
 
 typedef struct square_s {
@@ -33,7 +34,8 @@ typedef struct window_s {
     sfEvent event;
     sfVector2u size;
     sfView *view;
-    bool mouse_pressed;
+    bool if_mouse_pressed;
+    sfVector2i coor_mouse_pressed;
 } window_t;
 
 typedef struct earth_s {
