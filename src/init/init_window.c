@@ -8,6 +8,7 @@
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 
+#include "enums.h"
 #include "my_struct.h"
 
 window_t *init_window(void)
@@ -26,6 +27,6 @@ window_t *init_window(void)
     );
     sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
-    w->if_mouse_pressed = false;
+    w->if_mouse_pressed = NONE;
     return w;
 }

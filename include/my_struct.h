@@ -10,6 +10,8 @@
     #include <SFML/Graphics.h>
     #include <stdbool.h>
 
+    #include "enums.h"
+
 typedef struct square_s {
     sfVector2f p[4];
     sfVertex v_square[4];
@@ -26,6 +28,7 @@ typedef struct map_s {
     float delta1;
     float delta2;
     int zoom;
+    sfVector2i point_move;
 } map_t;
 
 typedef struct window_s {
@@ -33,7 +36,7 @@ typedef struct window_s {
     sfEvent event;
     sfVector2u size;
     sfView *view;
-    bool if_mouse_pressed;
+    mouse_pressed_t if_mouse_pressed;
     sfVector2i coor_mouse_pressed;
 } window_t;
 

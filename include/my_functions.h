@@ -37,5 +37,6 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w);
 void resize_window(window_t *w);
 void mouse_scroll(window_t *w, map_t *map);
 void move_map(window_t *w, map_t *map);
+void move_points(window_t *w, map_t *map);
 
 #endif
