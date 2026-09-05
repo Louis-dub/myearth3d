@@ -18,8 +18,8 @@ static sfVector2f project_iso_point(int x, int y, float z, map_t *map, sfVector2
     float rz = sin(map->delta2 * M_PI / 180) * ry + cos(map->delta2 * M_PI / 180) * z;
 
     ry = cos(map->delta2 * M_PI / 180) * ry - sin(map->delta2 * M_PI / 180) * z;
-    point.x = rx * map->zoom * 1.0;
-    point.y = (ry - rz) * map->zoom * 1.0;
+    point.x = rx * map->zoom;
+    point.y = (ry - rz) * map->zoom;
     return point;
 }
 

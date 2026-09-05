@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "enums.h"
 #include "my_functions.h"
@@ -21,7 +20,6 @@ static void mouse_pressed(window_t *w, map_t *map)
     w->if_mouse_pressed = MAP;
     w->coor_mouse_pressed.x = x;
     w->coor_mouse_pressed.y = y;
-    printf("xm: %d, ym: %d\n", x, y);
     for (int i = 0; i < map->size; i++) {
         for (int j = 0; j < map->size; j++) {
             if (map->map_2d[i][j].x + w->size.x / 2.0 - 10 <= x && map->map_2d[i][j].x + w->size.x / 2.0 + 10 >= x &&
