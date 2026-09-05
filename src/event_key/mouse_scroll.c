@@ -20,4 +20,5 @@ void mouse_scroll(window_t *w, map_t *map)
         map->zoom = 30;
     if (map->zoom >= 200)
         map->zoom = 200;
+    recalculation(w, map);
 }

@@ -14,6 +14,7 @@
 int launch_window(void);
 void calculate_map2d(map_t *map, sfVector2u *size);
 void analyse_event(earth_t *earth, window_t *w);
+void display_map(sfRenderWindow *w, map_t *map);
 
 // init
 earth_t *init_earth(void);
@@ -28,13 +29,10 @@ void free_window(window_t *w);
 void free_map(map_t *map);
 void free_square(square_t *square);
 
-/* display_map */
-void display_map(sfRenderWindow *w, map_t *map);
-sfVertexArray *create_square(int x, int y, sfVector2f **map);
-
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
-void resize_window(window_t *w);
+void recalculation(window_t *w, map_t *map);
+void resize_window(window_t *w, map_t *map);
 void mouse_scroll(window_t *w, map_t *map);
 void move_map(window_t *w, map_t *map);
 void move_points(window_t *w, map_t *map);

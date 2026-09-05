@@ -7,6 +7,7 @@
 
 #include <math.h>
 
+#include "my_functions.h"
 #include "my_struct.h"
 
 void move_map(window_t *w, map_t *map)
@@ -20,4 +21,5 @@ void move_map(window_t *w, map_t *map)
     map->delta2 += delta_y * -0.3;
     w->coor_mouse_pressed.x = w->event.mouseMove.x;
     w->coor_mouse_pressed.y = w->event.mouseMove.y;
+    recalculation(w, map);
 }

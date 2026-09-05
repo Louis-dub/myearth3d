@@ -12,6 +12,15 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
+void recalculation(window_t *w, map_t *map)
+{
+    for (int i = 0; map->squares[i] != NULL; i++)
+        free_square(map->squares[i]);
+    free(map->squares);
+    calculate_map2d(map, &w->size);
+    map->squares = create_squares(map);
+}
+
 static void mouse_pressed(window_t *w, map_t *map)
 {
     int x = w->event.mouseButton.x;
@@ -22,8 +31,8 @@ static void mouse_pressed(window_t *w, map_t *map)
     w->coor_mouse_pressed.y = y;
     for (int i = 0; i < map->size; i++) {
         for (int j = 0; j < map->size; j++) {
-            if (map->map_2d[i][j].x + w->size.x / 2.0 - 10 <= x && map->map_2d[i][j].x + w->size.x / 2.0 + 10 >= x &&
-                map->map_2d[i][j].y + w->size.y / 2.0 - 10 <= y && map->map_2d[i][j].y + w->size.y / 2.0 + 10 >= y) {
+            if (map->map_2d[i][j].x - 10 <= x && map->map_2d[i][j].x + 10 >= x &&
+                map->map_2d[i][j].y - 10 <= y && map->map_2d[i][j].y + 10 >= y) {
                 w->if_mouse_pressed = POINT;
                 map->point_move.x = i;
                 map->point_move.y = j;
@@ -36,7 +45,7 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
 {
     switch (w->event.type) {
         case sfEvtResized:
-            resize_window(earth->w);
+            resize_window(w, earth->map);
             break;
         case sfEvtMouseWheelScrolled:
             mouse_scroll(w, earth->map);
@@ -56,9 +65,4 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
         default:
             break;
     }
-    for (int i = 0; earth->map->squares[i] != NULL; i++)
-        free_square(earth->map->squares[i]);
-    free(earth->map->squares);
-    calculate_map2d(earth->map, &w->size);
-    earth->map->squares = create_squares(earth->map);
 }

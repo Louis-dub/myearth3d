@@ -16,8 +16,10 @@ window_t *init_window(void)
     window_t *w = malloc(sizeof(window_t));
     sfVideoMode v = {800, 600, 32};
 
+    w->size.x = 800;
+    w->size.y = 600;
     w->view = sfView_create();
-    sfView_setCenter(w->view, (sfVector2f){0, 0});
+    sfView_setCenter(w->view, (sfVector2f){400, 300});
     sfView_setSize(w->view, (sfVector2f){800, 600});
     w->window = sfRenderWindow_create(
        v,

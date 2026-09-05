@@ -7,8 +7,8 @@
 
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 
+#include "my_functions.h"
 #include "my_struct.h"
 
 static float find_new_z(int new_y, map_t *map, int i, int j)
@@ -29,10 +29,12 @@ void move_points(window_t *w, map_t *map)
     int delta_y = (w->event.mouseMove.y - w->coor_mouse_pressed.y) * sign;
     int i = map->point_move.x;
     int j = map->point_move.y;
-    float cx = 5 / 2.0 - 0.5;
-    float cy = 5 / 2.0 - 0.5;
+    float cx = map->size / 2.0 - 0.5;
+    float cy = map->size / 2.0 - 0.5;
 
-    map->map_3d[i][j] = find_new_z(map->map_2d[i][j].y + delta_y, map, i - cx, j - cy);
-    //exit(1);
+    if (!(map->delta2 >= 130 && map->delta2 <= 140) && !(map->delta2 >= 310 && map->delta2 <= 320)) {
+        map->map_3d[i][j] = find_new_z((map->map_2d[i][j].y + delta_y) - w->size.y / 2.0, map, i - cx, j - cy);
+        recalculation(w ,map);
+    }
     w->coor_mouse_pressed.y = w->event.mouseMove.y;
 }

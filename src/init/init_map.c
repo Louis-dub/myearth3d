@@ -7,6 +7,7 @@
 
 #include <SFML/System/Vector2.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
@@ -34,7 +35,7 @@ map_t *init_map(void)
 {
     map_t *map = malloc(sizeof(map_t));
 
-    map->size = 5;
+    map->size = 8;
     map->map_3d = malloc(sizeof(int*) * (map->size + 1));
     map->map_3d[map->size] = NULL;
     for (int i = 0; i < map->size; i++) {
