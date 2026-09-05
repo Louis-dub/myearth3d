@@ -43,8 +43,6 @@ map_t *init_map(void)
         for (int j = 0; j < map->size; j++)
             map->map_3d[i][j] = 0.0;
     }
-    map->map_3d[2][1] = 1.0;
-    map->map_3d[3][1] = 2.0;
     map->map_2d = malloc(sizeof(sfVector2f*) * (map->size + 1));
     map->map_2d[map->size] = NULL;
     for (int i = 0; i < map->size; i++)

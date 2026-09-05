@@ -11,7 +11,7 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-static float find_new_z(int new_y, map_t *map, int i, int j)
+static float find_new_z(int new_y, map_t *map, float i, float j)
 {
     float dy = (float){new_y} / (map->zoom);
     float ry = sin(map->delta1 * M_PI / 180) * i + cos(map->delta1 * M_PI / 180) * j;
