@@ -25,8 +25,7 @@ static float find_new_z(int new_y, map_t *map, int i, int j)
 
 void move_points(window_t *w, map_t *map)
 {
-    float sign = cos(map->delta1 * M_PI / 180) >= 0 ? 1.0 : -1.0;
-    int delta_y = (w->event.mouseMove.y - w->coor_mouse_pressed.y) * sign;
+    int delta_y = (w->event.mouseMove.y - w->coor_mouse_pressed.y);
     int i = map->point_move.x;
     int j = map->point_move.y;
     float cx = map->size / 2.0 - 0.5;
