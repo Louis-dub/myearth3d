@@ -22,7 +22,7 @@ typedef struct square_s {
 
 typedef struct map_s {
     float **map_3d;
-    sfVector2f **map_2d;
+    sfVector2i **map_2d;
     int size;
     square_t **squares;
     float delta1;

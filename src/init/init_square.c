@@ -66,14 +66,14 @@ static void set_lines(square_t *square)
     sfVertexArray_setPrimitiveType(square->lines[3], sfLineStrip);
 }
 
-square_t *init_square(sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfVector2f *p4)
+square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4)
 {
     square_t *square = malloc(sizeof(square_t));
 
-    square->p[0] = *p1;
-    square->p[1] = *p2;
-    square->p[2] = *p3;
-    square->p[3] = *p4;
+    square->p[0] = (sfVector2f){(float){p1->x}, (float){p1->y}};
+    square->p[1] = (sfVector2f){(float){p2->x}, (float){p2->y}};
+    square->p[2] = (sfVector2f){(float){p3->x}, (float){p3->y}};
+    square->p[3] = (sfVector2f){(float){p4->x}, (float){p4->y}};
     set_v_square(square);
     set_v_lines(square);
     set_square_array(square);

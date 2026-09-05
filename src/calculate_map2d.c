@@ -10,9 +10,9 @@
 
 #include "my_struct.h"
 
-static sfVector2f project_iso_point(int x, int y, float z, map_t *map, sfVector2u *size)
+static sfVector2i project_iso_point(int x, int y, float z, map_t *map, sfVector2u *size)
 {
-    sfVector2f point;
+    sfVector2i point;
     float rx = cos(map->delta1 * M_PI / 180) * x - sin(map->delta1 * M_PI / 180) * y;
     float ry = sin(map->delta1 * M_PI / 180) * x + cos(map->delta1 * M_PI / 180) * y;
     float rz = sin(map->delta2 * M_PI / 180) * ry + cos(map->delta2 * M_PI / 180) * z;

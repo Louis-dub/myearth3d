@@ -21,7 +21,7 @@ earth_t *init_earth(void);
 window_t *init_window(void);
 map_t *init_map(void);
 square_t **create_squares(map_t *map);
-square_t *init_square(sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfVector2f *p4);
+square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4);
 
 // free
 void free_earth(earth_t *earth);
