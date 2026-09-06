@@ -6,63 +6,11 @@
 */
 
 #include <SFML/System/Vector2.h>
+#include <math.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
-
-static square_t **fusion(square_t **left, square_t **right, int len)
-{
-    square_t **squares = malloc(sizeof(square_t*) * (len + 1));
-    int i_left = 0;
-    int i_right = 0;
-
-    squares[len] = NULL;
-    for (int i = 0; i < len; i++) {
-        if (!left[i_left]) {
-            squares[i] = right[i_right];
-            i_right++;
-        } else if (!right[i_right]) {
-            squares[i] = left[i_left];
-            i_left++;
-        } else if (left[i_left]->depth < right[i_right]->depth) {
-            squares[i] = left[i_left];
-            i_left++;
-        } else {
-            squares[i] = right[i_right];
-            i_right++;
-        }
-    }
-    free(left);
-    free(right);
-    return squares;
-}
-
-static square_t **create_copy(square_t **og, int len, int index)
-{
-    square_t **copy_square = malloc(sizeof(square_t*) * (len + 1));
-
-    copy_square[len] = NULL;
-    for (int i = 0; i < len; i++) {
-        copy_square[i] = og[index];
-        index++;
-    }
-    return copy_square;
-}
-
-static square_t **sort_squares(square_t **squares, int len)
-{
-    if (len == 1)
-        return squares;
-    square_t **left = create_copy(squares, len / 2, 0);
-    square_t **right = create_copy(squares, len - len / 2, len / 2);
-
-    left = sort_squares(left, len / 2);
-    right = sort_squares(right, len - len / 2);
-    free(squares);
-    return fusion(left, right, len);
-}
 
 static int set_depth(map_t *map, int i, int j, sfVector2u *size)
 {
@@ -85,6 +33,23 @@ static int set_depth(map_t *map, int i, int j, sfVector2u *size)
     return depth;
 }
 
+static int find_id_highest_point(float **map, int i, int j, float delta)
+{
+    int index = 0;
+    float max = 0;
+    float z[4] = {map[i][j], map[i][j + 1], map[i + 1][j + 1], map[i + 1][j]};
+
+    for (int i = 0; i < 4; i++) {
+        if (z[i] > max) {
+            index = i;
+            max = z[i];
+        }
+    }
+    if (cos(delta * M_PI / 180.0) < 0)
+        index = (index + 1) % 4;
+    return index;
+}
+
 square_t **create_squares(map_t *map, sfVector2u *size)
 {
     int len = (map->size - 1) * (map->size - 1);
@@ -97,7 +62,8 @@ square_t **create_squares(map_t *map, sfVector2u *size)
             squares[index] = init_square(&map->map_2d[i][j],
                                          &map->map_2d[i + 1][j],
                                          &map->map_2d[i][j + 1],
-                                         &map->map_2d[i + 1][j + 1]);
+                                         &map->map_2d[i + 1][j + 1],
+                                         find_id_highest_point(map->map_3d, i, j, map->delta2));
             squares[index]->depth = set_depth(map, i , j, size);
             index++;
         }
