@@ -18,7 +18,7 @@ void recalculation(window_t *w, map_t *map)
         free_square(map->squares[i]);
     free(map->squares);
     calculate_map2d(map, &w->size);
-    map->squares = create_squares(map);
+    map->squares = create_squares(map, &w->size);
 }
 
 static void mouse_pressed(window_t *w, map_t *map)

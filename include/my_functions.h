@@ -15,12 +15,13 @@ int launch_window(void);
 void calculate_map2d(map_t *map, sfVector2u *size);
 void analyse_event(earth_t *earth, window_t *w);
 void display_map(sfRenderWindow *w, map_t *map);
+sfVector2i project_iso_point(float x, float y, float z, map_t *map, sfVector2u *size);
 
 // init
 earth_t *init_earth(void);
 window_t *init_window(void);
 map_t *init_map(void);
-square_t **create_squares(map_t *map);
+square_t **create_squares(map_t *map, sfVector2u *size);
 square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4);
 
 // free
