@@ -13,5 +13,6 @@
 void free_window(window_t *w)
 {
     sfRenderWindow_destroy(w->window);
+    sfView_destroy(w->view);
     free(w);
 }

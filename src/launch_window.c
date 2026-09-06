@@ -6,22 +6,22 @@
 */
 
 #include <SFML/Graphics.h>
+#include <stddef.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
 
 int launch_window(void)
 {
-    window_t *w = init_window();
+    earth_t *earth = init_earth();
 
-    while (sfRenderWindow_isOpen(w->window)) {
-        sfRenderWindow_clear(w->window, sfBlack);
-        while (sfRenderWindow_pollEvent(w->window, &w->event))
-            if (w->event.type == sfEvtClosed)
-                sfRenderWindow_close(w->window);
-        w->size = sfRenderWindow_getSize(w->window);
-        sfRenderWindow_display(w->window);
+    while (sfRenderWindow_isOpen(earth->w->window)) {
+        sfRenderWindow_clear(earth->w->window, (sfColor){120, 120, 120});
+        while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
+            analyse_event(earth, earth->w);
+        display_map(earth->w->window, earth->map);
+        sfRenderWindow_display(earth->w->window);
     }
-    free_window(w);
+    free_earth(earth);
     return 0;
 }

@@ -8,11 +8,42 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
+    #include <stdbool.h>
+
+    #include "enums.h"
+
+typedef struct square_s {
+    sfVector2f p[4];
+    sfVertex v_square[4];
+    sfVertex v_line[4];
+    sfVertexArray *square;
+    sfVertexArray *lines[4];
+    int depth;
+} square_t;
+
+typedef struct map_s {
+    float **map_3d;
+    sfVector2i **map_2d;
+    int size;
+    square_t **squares;
+    float delta1;
+    float delta2;
+    int zoom;
+    sfVector2i point_move;
+} map_t;
 
 typedef struct window_s {
     sfRenderWindow *window;
     sfEvent event;
     sfVector2u size;
+    sfView *view;
+    mouse_pressed_t if_mouse_pressed;
+    sfVector2i coor_mouse_pressed;
 } window_t;
+
+typedef struct earth_s {
+    window_t *w;
+    map_t *map;
+} earth_t;
 
 #endif

@@ -9,11 +9,12 @@ NAME = my_earth
 
 SRC = $(wildcard src/*.c) \
 	  $(wildcard src/init/*.c) \
-	  $(wildcard src/free/*.c)
+	  $(wildcard src/free/*.c) \
+	  $(wildcard src/event_key/*.c)
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = clang
 
 CFLAGS_BASE	:=	-Iinclude -g
 LDFLAGS_BASE :=	-l csfml-graphics -l csfml-window -lcsfml-system -lcsfml-audio -lm

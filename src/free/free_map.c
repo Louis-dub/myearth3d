@@ -1,0 +1,25 @@
+/*
+** DUBOIS PRJECT, 2026
+** myearth3d
+** File decription:
+** free struct map
+*/
+
+#include <stdlib.h>
+
+#include "my_functions.h"
+#include "my_struct.h"
+
+void free_map(map_t *map)
+{
+    for (int i = 0; i < map->size; i++) {
+        free(map->map_3d[i]);
+        free(map->map_2d[i]);
+    }
+    free(map->map_3d);
+    free(map->map_2d);
+    for (int i = 0; map->squares[i] != NULL; i++)
+        free_square(map->squares[i]);
+    free(map->squares);
+    free(map);
+}
