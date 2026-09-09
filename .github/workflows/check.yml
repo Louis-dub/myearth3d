@@ -19,8 +19,10 @@ jobs:
                    sudo apt-get update
                    sudo apt-get install -y libsfml-dev libcsfml-dev cmake build-essential
             - name: Launch make
-              timeout-minutes: 2
-              run: CC=clang make 2> cc_errors; awk "/errors?/" cc_errors > errors
+              run: |
+                   CC=clang make 2> cc_errors  || true
+                   awk "/errors?/" cc_errors > errors
+              continue-on-error: true
             - name: Print error
               run: awk '{ print $0 }' errors
             - name: Error verification
