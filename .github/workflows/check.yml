@@ -1,0 +1,37 @@
+name: Check compilation
+
+run-name: ${{ github.actor }} push
+
+on:
+    push:
+    pull_request:
+        branches: [main]
+
+jobs:
+    check_compilation:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                fetch-depth: 1
+            - name: Launch make
+              timeout-minutes: 2
+              run: CC=clang make 2> cc_errors; awk "/errors?/" cc_errors > errors
+            - name: Print error
+              run: awk '{ print $0 }' erros
+            - name: Error verification
+              run: |
+                   if [ -s erros ]; then
+                      exit 1
+                   fi
+            - name: Executable verification
+              run: |
+                   for exec in $(echo $EXECUTABLES | tr ',' ' '); do
+                       if [ ! -x $exec ]; then
+                          echo ::error::$exec
+                          exit 1
+                       fi
+                   done
+
+env:
+    EXECUTABLES: my_earth
