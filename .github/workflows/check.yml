@@ -24,7 +24,7 @@ jobs:
                    awk "/errors?/" cc_errors > errors
               continue-on-error: true
             - name: Print error
-              run: awk '{ print $0 }' errors
+              run: awk '{ print "::error file=" $0 }' errors
             - name: Error verification
               run: |
                    if [ -s errors ]; then
