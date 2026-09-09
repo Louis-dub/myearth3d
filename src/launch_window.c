@@ -21,7 +21,7 @@ int launch_window(void)
             analyse_event(earth, earth->w);
         display_map(earth->w->window, earth->map);
         sfRenderWindow_display(earth->w->window);
-    }
+    
     free_earth(earth);
     return 0;
 }
