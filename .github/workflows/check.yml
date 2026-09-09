@@ -21,10 +21,10 @@ jobs:
             - name: Launch make
               run: |
                    CC=clang make 2> cc_errors  || true
-                   awk "/errors?/" cc_errors > errors
+                   awk "/error:/" cc_errors > errors
               continue-on-error: true
             - name: Print error
-              run: awk '{ print "::error file=" $0 }' errors
+              run: awk -F':' '{ print "::error file=" $1 ",line=" $2 "::" $5 }' errors
             - name: Error verification
               run: |
                    if [ -s errors ]; then
