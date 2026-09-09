@@ -1,0 +1,43 @@
+name: Check compilation
+
+run-name: ${{ github.actor }} push
+
+on:
+    push:
+    pull_request:
+        branches: [main]
+
+jobs:
+    check_compilation:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                fetch-depth: 1
+            - name: Install csfml
+              run: |
+                   sudo apt-get update
+                   sudo apt-get install -y libsfml-dev libcsfml-dev cmake build-essential
+            - name: Launch make
+              run: |
+                   CC=clang make 2> cc_errors  || true
+                   awk "/error:/" cc_errors > errors
+              continue-on-error: true
+            - name: Print error
+              run: awk -F':' '{ print "::error file=" $1 ",line=" $2 "::" $5 }' errors
+            - name: Error verification
+              run: |
+                   if [ -s errors ]; then
+                      exit 1
+                   fi
+            - name: Executable verification
+              run: |
+                   for exec in $(echo $EXECUTABLES | tr ',' ' '); do
+                       if [ ! -x $exec ]; then
+                          echo ::error::$exec
+                          exit 1
+                       fi
+                   done
+
+env:
+    EXECUTABLES: my_earth
