@@ -22,7 +22,7 @@ jobs:
               timeout-minutes: 2
               run: CC=clang make 2> cc_errors; awk "/errors?/" cc_errors > errors
             - name: Print error
-              run: awk '{ print $0 }' erros
+              run: awk '{ print $0 }' errors
             - name: Error verification
               run: |
                    if [ -s erros ]; then
