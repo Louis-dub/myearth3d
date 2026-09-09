@@ -15,13 +15,13 @@ int launch_window(void)
 {
     earth_t *earth = init_earth();
 
-    while (sfRenderWindow_isOpen(earth->w->window) {
+    while (sfRenderWindow_isOpen(earth->w->window)) {
         sfRenderWindow_clear(earth->w->window, (sfColor){120, 120, 120});
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
         display_map(earth->w->window, earth->map);
         sfRenderWindow_display(earth->w->window);
-    
+    }
     free_earth(earth);
     return 0;
 }
