@@ -49,12 +49,12 @@ typedef struct point_s {
     float x;
     float y;
     float z;
+    sfVector2i screen;
 } point_t;
 
 typedef struct sphere_s {
     float r;
     point_t **points;
-    sfVector2i **screen_points;
     square_t **squares;
     float delta1;
     float delta2;

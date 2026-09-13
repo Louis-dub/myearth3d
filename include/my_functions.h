@@ -39,6 +39,6 @@ void move_points(window_t *w, map_t *map);
 
 // maths
 void calculate_map2d(map_t *map, sfVector2u *size);
-sfVector2i project_iso_point(float x, float y, float z, map_t *map, sfVector2u *size);
+sfVector2i project_iso_point(float x, float y, float z, sphere_t *sphere, sfVector2u *size);
 
 #endif
