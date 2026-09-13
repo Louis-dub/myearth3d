@@ -19,7 +19,7 @@ sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u
     float rz = sin(sphere->delta2 * M_PI / 180) * ry + cos(sphere->delta2 * M_PI / 180) * cartesian->z;
 
     ry = cos(sphere->delta2 * M_PI / 180) * ry - sin(sphere->delta2 * M_PI / 180) * cartesian->z;
-    point.x = (rx * sphere->zoom) + size->x / 2.0;
-    point.y = (ry - rz) * sphere->zoom + size->y / 2.0;
+    point.x = (rx - rz) * sphere->zoom + size->x / 2.0;
+    point.y = ry * 1.22 * sphere->zoom + size->y / 2.0;
     return point;
 }

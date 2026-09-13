@@ -78,7 +78,7 @@ sphere_t *init_sphere(sfVector2u *size)
 
     sphere->r = 1;
     sphere->delta1 = 0.0;
-    sphere->delta2 = 45.0;
+    sphere->delta2 = 90.0;
     sphere->zoom = 100;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
