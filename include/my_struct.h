@@ -8,6 +8,7 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <SFML/Graphics.h>
+#include <SFML/System/Vector2.h>
     #include <stdbool.h>
 
     #include "enums.h"
@@ -54,7 +55,14 @@ typedef struct cartesian_point_s {
 } cartesian_point_t;
 
 typedef struct sphere_s {
-    
+    spherical_point_t **s_points;
+    cartesian_point_t **c_points;
+    sfVector2i **screen_points;
+    square_t **squares;
+    float delta1;
+    float delta2;
+    int zoom;
+    sfVector2i point_move;
 } sphere_t;
 
 typedef struct earth_s {
