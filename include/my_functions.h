@@ -12,10 +12,8 @@
 
 // src
 int launch_window(void);
-void calculate_map2d(map_t *map, sfVector2u *size);
 void analyse_event(earth_t *earth, window_t *w);
 void display_map(sfRenderWindow *w, map_t *map);
-sfVector2i project_iso_point(float x, float y, float z, map_t *map, sfVector2u *size);
 square_t **sort_squares(square_t **squares, int len);
 
 // init
@@ -38,5 +36,9 @@ void resize_window(window_t *w, map_t *map);
 void mouse_scroll(window_t *w, map_t *map);
 void move_map(window_t *w, map_t *map);
 void move_points(window_t *w, map_t *map);
+
+// maths
+void calculate_map2d(map_t *map, sfVector2u *size);
+sfVector2i project_iso_point(float x, float y, float z, map_t *map, sfVector2u *size);
 
 #endif

@@ -42,21 +42,18 @@ typedef struct window_s {
     sfVector2i coor_mouse_pressed;
 } window_t;
 
-typedef struct spherical_point_s {
+typedef struct point_s {
     float r;
     float theta;
     float phi;
-} spherical_point_t;
-
-typedef struct cartesian_point_s {
     float x;
     float y;
     float z;
-} cartesian_point_t;
+} point_t;
 
 typedef struct sphere_s {
-    spherical_point_t **s_points;
-    cartesian_point_t **c_points;
+    float r;
+    point_t **points;
     sfVector2i **screen_points;
     square_t **squares;
     float delta1;
@@ -68,6 +65,7 @@ typedef struct sphere_s {
 typedef struct earth_s {
     window_t *w;
     map_t *map;
+    sphere_t *sphere;
 } earth_t;
 
 #endif
