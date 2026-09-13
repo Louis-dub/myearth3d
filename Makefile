@@ -9,7 +9,9 @@ NAME = my_earth
 
 SRC = $(wildcard src/*.c) \
 	  $(wildcard src/init/*.c) \
-	  $(wildcard src/free/*.c)
+	  $(wildcard src/free/*.c) \
+	  $(wildcard src/maths/*.c) \
+	  $(wildcard src/event_key/*.c)
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,27 +6,29 @@
 */
 
 #include <SFML/Graphics.h>
+#include <SFML/Graphics/Color.h>
 #include <SFML/System.h>
 #include <SFML/System/Vector2.h>
 #include <stdlib.h>
 
+#include "enums.h"
 #include "my_struct.h"
 
-static void set_v_square(square_t *square, sfVector2i *p3)
+static void set_v_square(square_t *square)
 {
     square->v_square[0].position = square->p[0];
-    square->v_square[0].color = sfCyan;
+    square->v_square[0].color = sfTransparent;
     square->v_square[1].position = square->p[1];
-    square->v_square[1].color = sfCyan;
+    square->v_square[1].color = sfTransparent;
     square->v_square[2].position = square->p[2];
-    square->v_square[2].color = sfCyan;
-    if (p3) {
+    square->v_square[2].color = sfTransparent;
+    if (square->type == SQUARE) {
         square->v_square[3].position = square->p[3];
-        square->v_square[3].color = sfCyan;
+        square->v_square[3].color = sfTransparent;
     }
 }
 
-static void set_v_lines(square_t *square, sfVector2i *p3)
+static void set_v_lines(square_t *square)
 {
     square->v_line[0].position = square->p[0];
     square->v_line[0].color = sfBlack;
@@ -34,27 +36,27 @@ static void set_v_lines(square_t *square, sfVector2i *p3)
     square->v_line[1].color = sfBlack;
     square->v_line[2].position = square->p[2];
     square->v_line[2].color = sfBlack;
-    if (p3) {
+    if (square->type == SQUARE) {
         square->v_line[3].position = square->p[3];
         square->v_line[3].color = sfBlack;
     }
 }
 
-static void set_square_array(square_t *square, sfVector2i *p3)
+static void set_square_array(square_t *square)
 {
     square->square = sfVertexArray_create();
     sfVertexArray_setPrimitiveType(square->square, sfTriangles);
     sfVertexArray_append(square->square, square->v_square[1]);
     sfVertexArray_append(square->square, square->v_square[2]);
     sfVertexArray_append(square->square, square->v_square[0]);
-    if (p3) {
+    if (square->type == SQUARE) {
         sfVertexArray_append(square->square, square->v_square[3]);
         sfVertexArray_append(square->square, square->v_square[0]);
         sfVertexArray_append(square->square, square->v_square[2]);
     }
 }
 
-static void set_lines(square_t *square, sfVector2i *p3)
+static void set_lines(square_t *square)
 {
     square->lines[0] = sfVertexArray_create();
     sfVertexArray_append(square->lines[0], square->v_line[0]);
@@ -65,7 +67,7 @@ static void set_lines(square_t *square, sfVector2i *p3)
     sfVertexArray_append(square->lines[1], square->v_line[2]);
     sfVertexArray_setPrimitiveType(square->lines[1], sfLineStrip);
     square->lines[2] = sfVertexArray_create();
-    if (p3) {
+    if (square->type == SQUARE) {
         sfVertexArray_append(square->lines[2], square->v_line[2]);
         sfVertexArray_append(square->lines[2], square->v_line[3]);
         sfVertexArray_setPrimitiveType(square->lines[2], sfLineStrip);
@@ -81,18 +83,22 @@ static void set_lines(square_t *square, sfVector2i *p3)
     }
 }
 
-square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p4, sfVector2i *p3)
+square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4)
 {
     square_t *square = malloc(sizeof(square_t));
 
     square->p[0] = (sfVector2f){(float){p1->x}, (float){p1->y}};
     square->p[1] = (sfVector2f){(float){p2->x}, (float){p2->y}};
     square->p[2] = (sfVector2f){(float){p3->x}, (float){p3->y}};
-    if (p3)
+    if (p4) {
         square->p[3] = (sfVector2f){(float){p4->x}, (float){p4->y}};
-    set_v_square(square, p3);
-    set_v_lines(square, p3);
-    set_square_array(square, p3);
-    set_lines(square, p3);
+        square->type = SQUARE;
+    } else {
+        square->type = TRIANGLE;
+    }
+    set_v_square(square);
+    set_v_lines(square);
+    set_square_array(square);
+    set_lines(square);
     return square;
 }

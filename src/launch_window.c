@@ -24,7 +24,7 @@ int launch_window(void)
         sfRenderWindow_clear(earth->w->window, (sfColor){120, 120, 120});
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
-        display_map(earth->w->window, earth->map);
+        display_map(earth->w->window, earth->sphere);
         sfRenderWindow_display(earth->w->window);
     }
     free_earth(earth);

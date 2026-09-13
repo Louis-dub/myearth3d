@@ -13,5 +13,6 @@
 void free_earth(earth_t *earth)
 {
     free_window(earth->w);
+    free_sphere(earth->sphere);
     free(earth);
 }
