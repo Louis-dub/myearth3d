@@ -27,8 +27,16 @@ static point_t *create_point(float r, float theta, float phi)
 static point_t **create_points(float r)
 {
     point_t **points = malloc(sizeof(point_t*) * 614);
+    int index = 1;
 
-    
+    points[0] = create_point(r, 0, 0);
+    points[613] = create_point(-r, 0, 0);
+    for (int i = 1; i < 18; i++) {
+        for (int j = 0; j < 36; j++) {
+            points[index] = create_point(r, i * 10, j * 10);
+            index++;
+        }
+    }
     return points;
 }
 
