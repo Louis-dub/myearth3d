@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <SFML/System/Vector3.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -77,9 +78,9 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
     sphere->r = 1;
-    sphere->d1 = 60.0;
-    sphere->d2 = 60.0;
-    sphere->d3 = 60.0;
+    sphere->matrix[0] = (sfVector3f){1, 0, 0};
+    sphere->matrix[1] = (sfVector3f){0, 1, 0};
+    sphere->matrix[2] = (sfVector3f){0, 0, 1};
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
