@@ -16,6 +16,9 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
         case sfEvtResized:
             resize_window(w, earth->sphere);
             break;
+        case sfEvtMouseWheelScrolled:
+            mouse_scroll(w, earth->sphere);
+            break;
         default:
             break;
     }

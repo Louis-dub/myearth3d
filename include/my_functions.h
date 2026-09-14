@@ -32,9 +32,11 @@ void free_sphere(sphere_t *sphere);
 
 // maths
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
+void recalculation(window_t *w, sphere_t *sphere);
 
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
 void resize_window(window_t *w, sphere_t *sphere);
+void mouse_scroll(window_t *w, sphere_t *sphere);
 
 #endif
