@@ -14,7 +14,7 @@ earth_t *init_earth(void)
 {
     earth_t *earth = malloc(sizeof(earth_t));
 
-    earth->map = init_map();
     earth->w = init_window();
+    earth->sphere = init_sphere(&earth->w->size);
     return earth;
 }

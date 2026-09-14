@@ -14,4 +14,9 @@ typedef enum mouse_pressed_s {
     POINT
 } mouse_pressed_t;
 
+typedef enum type_square_s {
+    TRIANGLE,
+    SQUARE
+} type_square_t;
+
 #endif
