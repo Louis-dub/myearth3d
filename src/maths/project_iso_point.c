@@ -14,9 +14,13 @@
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size)
 {
     sfVector2i point;
+    float rx = cos(sphere->d1) * cartesian->x - sin(sphere->d1) * cartesian->y;
+    float ry = sin(sphere->d1) * cartesian->x + cos(sphere->d1) * cartesian->y;
+    float rz = sin(sphere->d2) * rx + cos(sphere->d2) * cartesian->z;
 
-    point.x = (cartesian->x * (-sqrtf(3.0) / 2) + cartesian->y * (sqrtf(3.0) / 2)) * sphere->zoom;
-    point.y = (cartesian->x * (1.0 / 2) + cartesian->y * (1.0 / 2) - cartesian->z) * sphere->zoom;
+    rx = cos(sphere->d2) * rx - sin(sphere->d2) * cartesian->z;
+    point.x = (rx * (-sqrtf(3.0) / 2) + ry * (sqrtf(3.0) / 2)) * sphere->zoom;
+    point.y = (rx * (1.0 / 2) + ry * (1.0 / 2) - rz) * sphere->zoom;
     point.x += size->x / 2.0;
     point.y += size->y / 2.0;
     return point;

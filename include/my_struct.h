@@ -33,7 +33,8 @@ typedef struct sphere_s {
     float r;
     point_t **points;
     square_t **squares;
-    sfVector3f matrix[3];
+    float d1;
+    float d2;
     int zoom;
 } sphere_t;
 
