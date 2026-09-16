@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
-#include <SFML/System/Vector3.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -40,6 +39,7 @@ square_t **create_squares(point_t **points)
         squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL);
         index++;
     }
+    
     return squares;
 }
 
@@ -79,7 +79,7 @@ sphere_t *init_sphere(sfVector2u *size)
 
     sphere->r = 1;
     sphere->d1 = 0.0;
-    sphere->d2 = 0.0;
+    sphere->d2 = 23.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);

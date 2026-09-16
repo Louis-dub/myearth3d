@@ -6,9 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Color.h>
 #include <SFML/System.h>
-#include <SFML/System/Vector2.h>
 #include <stdlib.h>
 
 #include "enums.h"
