@@ -78,8 +78,8 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
     sphere->r = 1;
-    sphere->d1 = 0.0;
-    sphere->d2 = 0.0;
+    sphere->angles.x = 0.0;
+    sphere->angles.y = 0.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
