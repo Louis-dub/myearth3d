@@ -34,8 +34,7 @@ typedef struct sphere_s {
     point_t **points;
     square_t **squares;
     sfVector2f angles;
-    sfVector3f axe_x;
-    sfVector3f axe_y;
+    sfVector3f axes[2];
     int zoom;
 } sphere_t;
 

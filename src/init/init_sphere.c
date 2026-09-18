@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <SFML/System/Vector3.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -73,6 +74,18 @@ static point_t **create_points(float r, sphere_t *sphere, sfVector2u *size)
     return points;
 }
 
+static void init_axes(sphere_t *sphere)
+{
+    float norme = sqrt(pow(-sqrt(3) / 2.0, 2) + pow(sqrt(3) / 2.0, 2));
+
+    sphere->axes[0] = (sfVector3f){0, 0, 1};
+    sphere->axes[1] = (sfVector3f){
+        (-sqrt(3) / 2) / norme,
+        (sqrt(3) / 2) / norme,
+        0
+    };
+}
+
 sphere_t *init_sphere(sfVector2u *size)
 {
     sphere_t *sphere = malloc(sizeof(sphere_t));
@@ -83,5 +96,6 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
+    init_axes(sphere);
     return sphere;
 }
