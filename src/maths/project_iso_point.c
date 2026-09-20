@@ -15,20 +15,21 @@
 
 static sfVector3f make_one_rotation(sfVector3f *dir, float x, float y, float z, float d)
 {
-    sfVector3f rotate;
-    float rx = dir->x;
-    float ry = dir->y;
-    float rz = dir->z;
-    
-    rotate.x = (rx * rx + (1 - rx * rx) * cos(d)) * x +
-               (rx * ry * (1 - cos(d)) - rz * sin(d)) * y +
-               (rx * rz * (1 - cos(d)) + ry * sin(d)) * z;
-    rotate.y = (rx * ry * (1 - cos(d)) + rz * sin(d)) * x +
-               (ry * ry + (1 - ry * ry) * cos(d)) * y +
-               (ry * rz * (1 - cos(d)) - rx * sin(d)) * z;
-    rotate.z = (rx * rz * (1 - cos(d)) - ry * sin(d)) * x +
-               (ry * rz * (1 - cos(d)) + rx * sin(d)) * y +
-               (rz * rz + (1 - rz * rz) * cos(d)) * z;
+    float q[4] = {cos(d / 2), dir->x * sin(d / 2), dir->y * sin(d / 2), dir->z * sin(d / 2)};
+    float p[4] = {0, x, y, z};
+    float q1[4] = {q[0], -q[1], -q[2], -q[3]};
+    float temp[4] = {
+        (q[0] * p[0]) - (q[1] * p[1] + q[2] * p[2] + q[3] * p[3]),
+        q[0] * p[1] + p[0] * q[1] + (q[2] * p[3] - q[3] * p[2]),
+        q[0] * p[2] + p[0] * q[2] + (q[3] * p[1] - q[1] * p[3]),
+        q[0] * p[3] + p[0] * q[3] + (q[1] * p[2] - q[2] * p[1])
+    };
+    sfVector3f rotate = {
+        temp[0] * q1[1] + q1[0] * temp[1] + (temp[2] * q1[3] - temp[3] * q1[2]),
+        temp[0] * q1[2] + q1[0] * temp[2] + (temp[3] * q1[1] - temp[1] * q1[3]),
+        temp[0] * q1[3] + q1[0] * temp[3] + (temp[1] * q1[2] - temp[2] * q1[1])
+    };
+
     return rotate;
 }
 
@@ -39,10 +40,10 @@ static sfVector3f make_double_rotation(sfVector3f *cartesian, sphere_t *sphere)
     float z = cartesian->z;
     float d1 = sphere->angles.x * M_PI / 180.0;
     float d2 = sphere->angles.y * M_PI / 180.0;
-    sfVector3f rotate = make_one_rotation(&(sfVector3f){0, 0, 1}, cartesian->x, cartesian->y, cartesian->z, sphere->angles.x);
+    sfVector3f rotate = make_one_rotation(&(sfVector3f){0, 0, 1}, x, y, z, d1);
 
     rotate = make_one_rotation(&(sfVector3f){(float){-sqrt(3) / 2.0}, sqrt(3) / 2.0, 0.0},
-                               rotate.x, rotate.y, rotate.z, sphere->angles.y);
+                               rotate.x, rotate.y, rotate.z, d2);
     return rotate;
 }
 
@@ -51,8 +52,6 @@ sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u
     sfVector2i point;
     sfVector3f r = make_double_rotation(cartesian, sphere);
 
-    printf("x: %f, y: %f, z: %f\n", cartesian->x, cartesian->y, cartesian->z);
-    printf("rx: %f, ry: %f, rz: %f\n", r.x, r.y, r.z);
     point.x = (r.x * (-sqrtf(3.0) / 2) + r.y * (sqrtf(3.0) / 2)) * sphere->zoom;
     point.y = (r.x * (1.0 / 2) + r.y * (1.0 / 2) - r.z) * sphere->zoom;
     point.x += size->x / 2.0;
