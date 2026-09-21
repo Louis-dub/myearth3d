@@ -43,7 +43,11 @@ static sfVector3f make_double_rotation(sfVector3f *cartesian, sphere_t *sphere)
                                           x, y, z, d1);
 
     rotate = make_one_rotation(&sphere->axes[1],
+<<<<<<< Updated upstream
                        rotate.x, rotate.y, rotate.z, d2);
+=======
+                               rotate.x, rotate.y, rotate.z, d2);
+>>>>>>> Stashed changes
     return rotate;
 }
 
