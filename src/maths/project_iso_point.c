@@ -9,11 +9,10 @@
 #include <SFML/System.h>
 #include <SFML/System/Vector3.h>
 #include <math.h>
-#include <stdio.h>
 
 #include "my_struct.h"
 
-static sfVector3f make_one_rotation(sfVector3f *dir, float x, float y, float z, float d)
+sfVector3f make_one_rotation(sfVector3f *dir, float x, float y, float z, float d)
 {
     float q[4] = {cos(d / 2), dir->x * sin(d / 2), dir->y * sin(d / 2), dir->z * sin(d / 2)};
     float p[4] = {0, x, y, z};
@@ -40,10 +39,15 @@ static sfVector3f make_double_rotation(sfVector3f *cartesian, sphere_t *sphere)
     float z = cartesian->z;
     float d1 = sphere->angles.x * M_PI / 180.0;
     float d2 = sphere->angles.y * M_PI / 180.0;
-    sfVector3f rotate = make_one_rotation(&(sfVector3f){0, 0, 1}, x, y, z, d1);
+    sfVector3f rotate = make_one_rotation(&sphere->axes[0],
+                                          x, y, z, d1);
 
-    rotate = make_one_rotation(&(sfVector3f){(float){-sqrt(3) / 2.0}, sqrt(3) / 2.0, 0.0},
+    rotate = make_one_rotation(&sphere->axes[1],
+<<<<<<< Updated upstream
+                       rotate.x, rotate.y, rotate.z, d2);
+=======
                                rotate.x, rotate.y, rotate.z, d2);
+>>>>>>> Stashed changes
     return rotate;
 }
 

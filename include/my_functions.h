@@ -16,6 +16,7 @@ int launch_window(void);
 void analyse_event(earth_t *earth, window_t *w);
 square_t **sort_squares(square_t **squares, int len);
 void display_map(sfRenderWindow *w, sphere_t *sphere);
+void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 
 // init
 earth_t *init_earth(void);
@@ -33,6 +34,7 @@ void free_sphere(sphere_t *sphere);
 // maths
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
 void recalculation(window_t *w, sphere_t *sphere);
+sfVector3f make_one_rotation(sfVector3f *dir, float x, float y, float z, float d);
 
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
