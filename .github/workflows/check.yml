@@ -4,6 +4,7 @@ run-name: ${{ github.actor }} push
 
 on:
     push:
+        branches: [main, feat/**]
     pull_request:
         branches: [main]
 
