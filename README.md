@@ -2,10 +2,11 @@
 This project is an extension of the [myworld](https://github.com/Louis-dub/myworld) project, in which the edited map is no longer flat but spherical.
 This project will also add more editing options.
 
-## Feature (v.1.0)
+## Feature (v.1.1)
 - Display sphere
 - Zoom
 - Resize the window
+- Move sphere with mouse
 
 ## Technologies Used
 - **C**: For isometric calculations, memory management...
