@@ -6,7 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/Types.h>
 
 #include "my_functions.h"
 #include "my_struct.h"

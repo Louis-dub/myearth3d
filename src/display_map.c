@@ -6,8 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Types.h>
 #include <stdlib.h>
 
 #include "my_functions.h"
@@ -26,5 +24,4 @@ void display_map(sfRenderWindow *w, sphere_t *sphere)
         for (int j = 0; j < nb_line; j++)
             sfRenderWindow_drawVertexArray(w, sphere->squares[i]->lines[j], NULL);
     }
-    display_xyz(w, sphere, sfRenderWindow_getSize(w));
 }
