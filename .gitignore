@@ -4,3 +4,4 @@ my_earth
 .cache
 *~
 *#*
+src/display_vectors.c

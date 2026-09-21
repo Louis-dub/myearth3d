@@ -6,11 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <SFML/Graphics/CircleShape.h>
-#include <SFML/Graphics/Color.h>
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Types.h>
-#include <SFML/System/Vector2.h>
 #include <stddef.h>
 
 #include "my_functions.h"

@@ -7,8 +7,6 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
-#include <SFML/System/Vector3.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -40,6 +38,7 @@ square_t **create_squares(point_t **points)
         squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL);
         index++;
     }
+    
     return squares;
 }
 
@@ -73,16 +72,40 @@ static point_t **create_points(float r, sphere_t *sphere, sfVector2u *size)
     return points;
 }
 
+static void init_axes(sphere_t *sphere, sfVector2u *size)
+{
+    float norme = sqrt(pow(-sqrt(3) / 2.0, 2) + pow(sqrt(3) / 2.0, 2));
+    point_t *point = create_point(sphere->r, -45, 45, sphere, size);
+
+    sphere->axes[0].x = point->cartesian.x;
+    sphere->axes[0].y = point->cartesian.y;
+    sphere->axes[0].z = point->cartesian.z;
+    sphere->axes[1] = (sfVector3f){
+        (-sqrt(3) / 2) / norme,
+        (sqrt(3) / 2) / norme,
+        0
+    };
+    free(point);
+}
+
+static void set_matrix_identity(float m[3][3])
+{
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            m[i][j] = i == j ? 1.0 : 0.0;
+}
+
 sphere_t *init_sphere(sfVector2u *size)
 {
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
     sphere->r = 1;
-    sphere->matrix[0] = (sfVector3f){1, 0, 0};
-    sphere->matrix[1] = (sfVector3f){0, 1, 0};
-    sphere->matrix[2] = (sfVector3f){0, 0, 1};
+    sphere->angles.x = 0.0;
+    sphere->angles.y = 0.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
+    init_axes(sphere, size);
+    set_matrix_identity(sphere->rotation);
     return sphere;
 }
