@@ -22,6 +22,7 @@ static void mouse_pressed(window_t *w, sphere_t *sphere)
         if (sphere->points[i]->screen.x - 10 <= x && sphere->points[i]->screen.x + 10 >= x &&
             sphere->points[i]->screen.y - 10 <= y && sphere->points[i]->screen.y + 10 >= y) {
             w->if_mouse_pressed = POINT;
+            w->touch_point = i;
         }
     }
 }

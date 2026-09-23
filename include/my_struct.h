@@ -46,6 +46,7 @@ typedef struct window_s {
     sfView *view;
     mouse_pressed_t if_mouse_pressed;
     sfVector2i coor_mouse_pressed;
+    int touch_point;
 } window_t;
 
 typedef struct earth_s {
