@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 
+#include "enums.h"
 #include "my_functions.h"
 #include "my_struct.h"
 
@@ -22,6 +23,7 @@ static void mouse_pressed(window_t *w, sphere_t *sphere)
         if (sphere->points[i]->screen.x - 10 <= x && sphere->points[i]->screen.x + 10 >= x &&
             sphere->points[i]->screen.y - 10 <= y && sphere->points[i]->screen.y + 10 >= y) {
             w->if_mouse_pressed = POINT;
+            w->touch_point = i;
         }
     }
 }
@@ -44,6 +46,8 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
         case sfEvtMouseMoved:
             if (w->if_mouse_pressed == MAP)
                 move_map(w, earth->sphere);
+            if (w->if_mouse_pressed == POINT)
+                move_point(w, earth->sphere);
             break;
         default:
             break;
