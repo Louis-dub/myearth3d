@@ -11,13 +11,29 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
+static void set_point(point_t *point, float r, float theta, float phi)
+{
+    point->cartesian = (sfVector3f){
+        r * sin(theta * M_PI / 180) * cos(phi * M_PI / 180),
+        r * sin(theta * M_PI / 180) * sin(phi * M_PI / 180),
+        r * cos(theta * M_PI / 180)
+    };
+}
+
 void move_point(window_t *w, sphere_t *sphere)
 {
+    float x = w->coor_mouse_pressed.x;
+    float y = w->coor_mouse_pressed.y;
+    int id = w->touch_point;
     sfVector2f add_radius_2d = {
         w->event.mouseMove.x - w->coor_mouse_pressed.x,
         w->event.mouseMove.y - w->coor_mouse_pressed.y
     };
-    int d = sqrt(pow(add_radius_2d.x, 2) + pow(add_radius_2d.y, 2));
+    float sign = add_radius_2d.x * x < 0 || add_radius_2d.y * y < 0 ? -1 : 1;
+    float d = sqrt(pow(add_radius_2d.x, 2) + pow(add_radius_2d.y, 2)) / sphere->zoom * sign;
 
+    sphere->points[id]->spherical.x += d;
+    set_point(sphere->points[id], sphere->points[id]->spherical.x,
+              sphere->points[id]->spherical.y, sphere->points[id]->spherical.z);
     recalculation(w, sphere);
 }
