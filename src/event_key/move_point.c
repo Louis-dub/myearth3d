@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
@@ -29,11 +30,15 @@ void move_point(window_t *w, sphere_t *sphere)
         w->event.mouseMove.x - w->coor_mouse_pressed.x,
         w->event.mouseMove.y - w->coor_mouse_pressed.y
     };
-    float sign = add_radius_2d.x * x < 0 || add_radius_2d.y * y < 0 ? -1 : 1;
+    float sign = add_radius_2d.x * x < 0 || add_radius_2d.y * y < 0 ? -1.0 : 1.0;
     float d = sqrt(pow(add_radius_2d.x, 2) + pow(add_radius_2d.y, 2)) / sphere->zoom * sign;
 
     sphere->points[id]->spherical.x += d;
+    if (sphere->points[id]->spherical.x < 1.0)
+        sphere->points[id]->spherical.x = 1.0;
     set_point(sphere->points[id], sphere->points[id]->spherical.x,
               sphere->points[id]->spherical.y, sphere->points[id]->spherical.z);
     recalculation(w, sphere);
+    w->coor_mouse_pressed.x = w->event.mouseMove.x;
+    w->coor_mouse_pressed.y = w->event.mouseMove.y;
 }
