@@ -23,8 +23,8 @@ static void set_point(point_t *point, float r, float theta, float phi)
 
 void move_point(window_t *w, sphere_t *sphere)
 {
-    float x = w->coor_mouse_pressed.x;
-    float y = w->coor_mouse_pressed.y;
+    float x = w->coor_mouse_pressed.x - w->size.x / 2.0;
+    float y = w->coor_mouse_pressed.y - w->size.y / 2.0;
     int id = w->touch_point;
     sfVector2f add_radius_2d = {
         w->event.mouseMove.x - w->coor_mouse_pressed.x,
