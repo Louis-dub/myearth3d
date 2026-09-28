@@ -13,7 +13,7 @@ This project will also add more editing options.
 
 Here is a preview of the project:
 
-![preview](assets/screenshot.png)
+![preview](assets/myearth_screenshot.png)
 
 ## Technologies Used
 - **C**: For isometric calculations, memory management...
