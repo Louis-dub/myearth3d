@@ -9,6 +9,12 @@ This project will also add more editing options.
 - Move sphere with mouse
 - Move points
 
+## Overview
+
+Here is a preview of the project:
+
+![preview](assets/screenshot.png)
+
 ## Technologies Used
 - **C**: For isometric calculations, memory management...
 - **CSFML**: For rendering the window and the various graphical elements
