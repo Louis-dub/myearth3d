@@ -52,6 +52,7 @@ static point_t *create_point(float r, float theta, float phi, sphere_t *sphere, 
         r * sin(theta * M_PI / 180) * sin(phi * M_PI / 180),
         r * cos(theta * M_PI / 180)
     };
+    set_cartesian(&point->cartesian, &point->rotate_cartesian, sphere);
     point->screen = project_iso_point(&point->cartesian, sphere, size);
     return point;
 }
@@ -100,12 +101,12 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
     sphere->r = 1;
+    set_matrix_identity(sphere->rotation);
     sphere->angles.x = 0.0;
     sphere->angles.y = 0.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points);
     init_axes(sphere, size);
-    set_matrix_identity(sphere->rotation);
     return sphere;
 }

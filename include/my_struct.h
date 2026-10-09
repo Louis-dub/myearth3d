@@ -26,6 +26,7 @@ typedef struct square_s {
 typedef struct point_s {
     sfVector3f spherical;
     sfVector3f cartesian;
+    sfVector3f rotate_cartesian;
     sfVector2i screen;
 } point_t;
 

@@ -35,6 +35,7 @@ void free_sphere(sphere_t *sphere);
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
 void recalculation(window_t *w, sphere_t *sphere);
 void apply_rotation(sphere_t *sphere);
+void set_cartesian(sfVector3f *cartesian, sfVector3f *rotate_cartesian, sphere_t *sphere);
 
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);

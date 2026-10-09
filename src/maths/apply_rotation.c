@@ -5,6 +5,7 @@
 ** Calculate new rotation
  */
 
+#include <SFML/System.h>
 #include <math.h>
 #include <string.h>
 
@@ -40,6 +41,19 @@ static void get_matrix_double_rotation(float m1[3][3], float m2[3][3], float mr[
     mr[2][2] = m1[2][0] * m2[0][2] + m1[2][1] * m2[1][2] + m1[2][2] * m2[2][2];
 }
 
+void set_cartesian(sfVector3f *cartesian, sfVector3f *rotate_cartesian, sphere_t *sphere)
+{
+    sfVector3f r = {
+        sphere->rotation[0][0] * cartesian->x + sphere->rotation[0][1] * cartesian->y + sphere->rotation[0][2] * cartesian->z,
+        sphere->rotation[1][0] * cartesian->x + sphere->rotation[1][1] * cartesian->y + sphere->rotation[1][2] * cartesian->z,
+        sphere->rotation[2][0] * cartesian->x + sphere->rotation[2][1] * cartesian->y + sphere->rotation[2][2] * cartesian->z,
+    };
+
+    rotate_cartesian->x = r.x;
+    rotate_cartesian->y = r.y;
+    rotate_cartesian->z = r.z;
+}
+
 void apply_rotation(sphere_t *sphere)
 {
     float m1[3][3];
@@ -56,4 +70,6 @@ void apply_rotation(sphere_t *sphere)
     memcpy(sphere->rotation, mfinal, sizeof(mfinal));
     sphere->angles.x = 0.0;
     sphere->angles.y = 0.0;
+    for (int i = 0; i < 614; i++)
+        set_cartesian(&sphere->points[i]->cartesian, &sphere->points[i]->rotate_cartesian, sphere);
 }
