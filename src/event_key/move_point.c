@@ -76,6 +76,7 @@ void move_point(window_t *w, sphere_t *sphere)
         sphere->points[id]->spherical.x = 3.0;
     set_point(sphere->points[id], sphere->points[id]->spherical.x,
               sphere->points[id]->spherical.y, sphere->points[id]->spherical.z);
+    set_cartesian(&sphere->points[id]->cartesian, &sphere->points[id]->rotate_cartesian, sphere);
     recalculation(w, sphere);
     w->coor_mouse_pressed.x = w->event.mouseMove.x;
     w->coor_mouse_pressed.y = w->event.mouseMove.y;
