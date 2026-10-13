@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
+#include <SFML/Graphics/Vertex.h>
 #include <SFML/System.h>
 #include <stdlib.h>
 
@@ -40,17 +41,30 @@ static void set_v_lines(square_t *square)
     }
 }
 
-static void set_square_array(square_t *square)
+static void set_square_array(square_t *square, int fold)
 {
     square->square = sfVertexArray_create();
     sfVertexArray_setPrimitiveType(square->square, sfTriangles);
-    sfVertexArray_append(square->square, square->v_square[1]);
-    sfVertexArray_append(square->square, square->v_square[2]);
-    sfVertexArray_append(square->square, square->v_square[0]);
-    if (square->type == SQUARE) {
-        sfVertexArray_append(square->square, square->v_square[3]);
-        sfVertexArray_append(square->square, square->v_square[0]);
+    if (square->type == TRIANGLE) {
+        sfVertexArray_append(square->square, square->v_square[1]);
         sfVertexArray_append(square->square, square->v_square[2]);
+        sfVertexArray_append(square->square, square->v_square[0]);
+    } else {
+        if (fold == 0) {
+            sfVertexArray_append(square->square, square->v_square[1]);
+            sfVertexArray_append(square->square, square->v_square[2]);
+            sfVertexArray_append(square->square, square->v_square[0]);
+            sfVertexArray_append(square->square, square->v_square[3]);
+            sfVertexArray_append(square->square, square->v_square[0]);
+            sfVertexArray_append(square->square, square->v_square[2]);
+        } else {
+            sfVertexArray_append(square->square, square->v_square[0]);
+            sfVertexArray_append(square->square, square->v_square[1]);
+            sfVertexArray_append(square->square, square->v_square[3]);
+            sfVertexArray_append(square->square, square->v_square[2]);
+            sfVertexArray_append(square->square, square->v_square[3]);
+            sfVertexArray_append(square->square, square->v_square[1]);
+        }
     }
 }
 
@@ -82,7 +96,7 @@ static void set_lines(square_t *square)
 }
 
 square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4,
-                      int i1, int i2, int i3, int i4)
+                      int i1, int i2, int i3, int i4, int fold)
 {
     square_t *square = malloc(sizeof(square_t));
 
@@ -101,7 +115,7 @@ square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i
     }
     set_v_square(square);
     set_v_lines(square);
-    set_square_array(square);
+    set_square_array(square, fold);
     set_lines(square);
     return square;
 }
