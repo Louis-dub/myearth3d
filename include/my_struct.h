@@ -20,7 +20,7 @@ typedef struct square_s {
     sfVertex v_line[4];
     sfVertexArray *square;
     sfVertexArray *lines[4];
-    int depth;
+    float depth;
 } square_t;
 
 typedef struct point_s {
