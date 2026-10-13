@@ -22,7 +22,8 @@ void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 earth_t *init_earth(void);
 window_t *init_window(void);
 sphere_t *init_sphere(sfVector2u *size);
-square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p4, sfVector2i *p3);
+square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4,
+                      int i1, int i2, int i3, int i4);
 square_t **create_squares(point_t **points, sphere_t *sphere);
 
 // free

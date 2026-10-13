@@ -39,10 +39,10 @@ static float depth_calculation(point_t **ps, int nb)
 static void depth_square(square_t *square, point_t **points)
 {
     point_t *ps[4] = {
-        find_point(&square->p[0], points),
-        find_point(&square->p[1], points),
-        find_point(&square->p[2], points),
-        find_point(&square->p[3], points)
+        points[square->ids[0]],
+        points[square->ids[1]],
+        points[square->ids[2]],
+        points[square->ids[3]]
     };
 
     square->depth = depth_calculation(ps, 4);
@@ -51,9 +51,9 @@ static void depth_square(square_t *square, point_t **points)
 static void depth_triangle(square_t *square, point_t **points)
 {
     point_t *ps[3] = {
-        find_point(&square->p[0], points),
-        find_point(&square->p[1], points),
-        find_point(&square->p[2], points)
+        points[square->ids[0]],
+        points[square->ids[1]],
+        points[square->ids[2]]
     };
 
     square->depth = depth_calculation(ps, 3);

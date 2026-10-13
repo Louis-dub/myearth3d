@@ -81,15 +81,20 @@ static void set_lines(square_t *square)
     }
 }
 
-square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4)
+square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4,
+                      int i1, int i2, int i3, int i4)
 {
     square_t *square = malloc(sizeof(square_t));
 
     square->p[0] = (sfVector2f){(float){p1->x}, (float){p1->y}};
+    square->ids[0] = i1;
     square->p[1] = (sfVector2f){(float){p2->x}, (float){p2->y}};
+    square->ids[1] = i2;
     square->p[2] = (sfVector2f){(float){p3->x}, (float){p3->y}};
+    square->ids[2] = i3;
     if (p4) {
         square->p[3] = (sfVector2f){(float){p4->x}, (float){p4->y}};
+        square->ids[3] = i4;
         square->type = SQUARE;
     } else {
         square->type = TRIANGLE;

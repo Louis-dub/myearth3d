@@ -20,7 +20,8 @@ square_t **create_squares(point_t **points, sphere_t *sphere)
     int p[4] = {0, 0, 0, 0};
 
     for (int i = 1; i < 37; i++) {
-        squares[index] = init_square(&points[0]->screen, &points[i]->screen, &points[i % 36 + 1]->screen, NULL);
+        squares[index] = init_square(&points[0]->screen, &points[i]->screen, &points[i % 36 + 1]->screen, NULL,
+                                     0, i, i % 36 + 1, 0);
         index++;
     }
     for (int i = 0; i < 16; i++) {
@@ -30,12 +31,14 @@ square_t **create_squares(point_t **points, sphere_t *sphere)
             p[1] = id + 1 - (j / 35 * 36);
             p[2] = id + 36 + 1 - (j / 35 * 36);
             p[3] = id + 36;
-            squares[index] = init_square(&points[p[0]]->screen, &points[p[1]]->screen, &points[p[2]]->screen, &points[p[3]]->screen);
+            squares[index] = init_square(&points[p[0]]->screen, &points[p[1]]->screen, &points[p[2]]->screen, &points[p[3]]->screen,
+                                         p[0], p[1], p[2], p[3]);
             index++;
         }
     }
     for (int i = 577; i < 613; i++) {
-        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL);
+        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL,
+                                     613, i, i % 612 + (i / 612 * 577), 0);
         index++;
     }
     depth(squares, sphere);

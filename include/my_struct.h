@@ -16,6 +16,7 @@
 typedef struct square_s {
     type_square_t type;
     sfVector2f p[4];
+    int ids[4];
     sfVertex v_square[4];
     sfVertex v_line[4];
     sfVertexArray *square;
