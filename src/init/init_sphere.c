@@ -37,8 +37,8 @@ square_t **create_squares(point_t **points, sphere_t *sphere)
         }
     }
     for (int i = 577; i < 613; i++) {
-        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL,
-                                     613, i, i % 612 + (i / 612 * 577), 0);
+        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i + 1 == 613 ? 577 : i + 1]->screen, NULL,
+                                     613, i, i + 1 == 613 ? 577 : i + 1, 0);
         index++;
     }
     depth(squares, sphere);
