@@ -17,5 +17,5 @@ void recalculation(window_t *w, sphere_t *sphere)
     free(sphere->squares);
     for (int i = 0; i < 614; i++)
         sphere->points[i]->screen = project_iso_point(&sphere->points[i]->rotate_cartesian, sphere, &w->size);
-    sphere->squares = create_squares(sphere->points);
+    sphere->squares = create_squares(sphere->points, sphere);
 }

@@ -15,14 +15,14 @@
 static void set_v_square(square_t *square)
 {
     square->v_square[0].position = square->p[0];
-    square->v_square[0].color = sfTransparent;
+    square->v_square[0].color = sfCyan;
     square->v_square[1].position = square->p[1];
-    square->v_square[1].color = sfTransparent;
+    square->v_square[1].color = sfCyan;
     square->v_square[2].position = square->p[2];
-    square->v_square[2].color = sfTransparent;
+    square->v_square[2].color = sfCyan;
     if (square->type == SQUARE) {
         square->v_square[3].position = square->p[3];
-        square->v_square[3].color = sfTransparent;
+        square->v_square[3].color = sfCyan;
     }
 }
 

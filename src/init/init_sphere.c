@@ -13,7 +13,7 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-square_t **create_squares(point_t **points)
+square_t **create_squares(point_t **points, sphere_t *sphere)
 {
     square_t **squares = malloc(sizeof(square_t*) * 648);
     int index = 0;
@@ -38,8 +38,8 @@ square_t **create_squares(point_t **points)
         squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL);
         index++;
     }
-    
-    return squares;
+    depth(squares, sphere);
+    return sort_squares(squares, 648);
 }
 
 static point_t *create_point(float r, float theta, float phi, sphere_t *sphere, sfVector2u *size)
@@ -106,7 +106,7 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere->angles.y = 0.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
-    sphere->squares = create_squares(sphere->points);
+    sphere->squares = create_squares(sphere->points, sphere);
     init_axes(sphere, size);
     return sphere;
 }

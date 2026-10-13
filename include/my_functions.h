@@ -23,7 +23,7 @@ earth_t *init_earth(void);
 window_t *init_window(void);
 sphere_t *init_sphere(sfVector2u *size);
 square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p4, sfVector2i *p3);
-square_t **create_squares(point_t **points);
+square_t **create_squares(point_t **points, sphere_t *sphere);
 
 // free
 void free_earth(earth_t *earth);
@@ -36,6 +36,7 @@ sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u
 void recalculation(window_t *w, sphere_t *sphere);
 void apply_rotation(sphere_t *sphere);
 void set_cartesian(sfVector3f *cartesian, sfVector3f *rotate_cartesian, sphere_t *sphere);
+void depth(square_t **squares, sphere_t *sphere);
 
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
