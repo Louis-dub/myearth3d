@@ -24,12 +24,12 @@ static point_t *find_point(sfVector2f *p, point_t **points)
 static float depth_calculation(point_t **ps, int nb)
 {
     float d = cos(atan2(ps[0]->rotate_cartesian.y, ps[0]->rotate_cartesian.x) * M_PI / 180.0)
-              * sin((acos(ps[0]->rotate_cartesian.z / ps[0]->spherical.x) + 35.27) * M_PI / 180.0);
+              * sin((acos(ps[0]->rotate_cartesian.z / ps[0]->spherical.x) - 35.27) * M_PI / 180.0);
     float temp_d = 0.0;
 
     for (int i = 1; i < nb; i++) {
         temp_d = cos(atan2(ps[i]->rotate_cartesian.y, ps[i]->rotate_cartesian.x) * M_PI / 180.0)
-                 * sin((acos(ps[i]->rotate_cartesian.z / ps[i]->spherical.x) + 35.27) * M_PI / 180.0);
+                 * sin((acos(ps[i]->rotate_cartesian.z / ps[i]->spherical.x) - 35.27) * M_PI / 180.0);
         if (d > temp_d)
             d = temp_d;
     }
