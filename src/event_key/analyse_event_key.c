@@ -21,7 +21,7 @@ static void mouse_pressed(window_t *w, sphere_t *sphere)
     w->if_mouse_pressed = MAP;
     w->coor_mouse_pressed.x = x;
     w->coor_mouse_pressed.y = y;
-    for (int i = 647; i >= 0; i--) {
+    for (int i = 0; i < 648; i++) {
         if (sphere->squares[i]->type == SQUARE)
             t = 4;
         else
