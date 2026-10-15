@@ -13,8 +13,8 @@ void move_map(window_t *w, sphere_t *sphere)
     float delta_x = w->coor_mouse_pressed.x - w->event.mouseMove.x;
     float delta_y = w->coor_mouse_pressed.y - w->event.mouseMove.y;
 
-    sphere->angles.x += delta_x * 0.5;
-    sphere->angles.y += delta_y * 0.5;
+    sphere->angles.x += delta_x * -0.5;
+    sphere->angles.y += delta_y * -0.5;
     w->coor_mouse_pressed.x = w->event.mouseMove.x;
     w->coor_mouse_pressed.y = w->event.mouseMove.y;
     apply_rotation(sphere);
