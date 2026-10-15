@@ -13,14 +13,26 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-square_t **create_squares(point_t **points)
+static int find_fold(float r1, float r2, float r3, float r4)
+{
+    if (r1 >= r2 && r1 >= r3 && r1 >= r4)
+        return 1;
+    if (r2 >= r3 && r2 >= r4)
+        return 0;
+    if (r3 >= r4)
+        return 1;
+    return 0;
+}
+
+square_t **create_squares(point_t **points, sphere_t *sphere)
 {
     square_t **squares = malloc(sizeof(square_t*) * 648);
     int index = 0;
     int p[4] = {0, 0, 0, 0};
 
     for (int i = 1; i < 37; i++) {
-        squares[index] = init_square(&points[0]->screen, &points[i]->screen, &points[i % 36 + 1]->screen, NULL);
+        squares[index] = init_square(&points[0]->screen, &points[i]->screen, &points[i % 36 + 1]->screen, NULL,
+                                     0, i, i % 36 + 1, 0, 0);
         index++;
     }
     for (int i = 0; i < 16; i++) {
@@ -30,16 +42,23 @@ square_t **create_squares(point_t **points)
             p[1] = id + 1 - (j / 35 * 36);
             p[2] = id + 36 + 1 - (j / 35 * 36);
             p[3] = id + 36;
-            squares[index] = init_square(&points[p[0]]->screen, &points[p[1]]->screen, &points[p[2]]->screen, &points[p[3]]->screen);
+            squares[index] = init_square(&points[p[0]]->screen, &points[p[1]]->screen, &points[p[2]]->screen, &points[p[3]]->screen,
+                                         p[0], p[1], p[2], p[3], find_fold(
+                                                                               points[p[0]]->spherical.x,
+                                                                               points[p[1]]->spherical.x,
+                                                                               points[p[2]]->spherical.x,
+                                                                               points[p[3]]->spherical.x
+                                                                           ));
             index++;
         }
     }
     for (int i = 577; i < 613; i++) {
-        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i % 612 + (i / 612 * 577)]->screen, NULL);
+        squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i + 1 == 613 ? 577 : i + 1]->screen, NULL,
+                                     613, i, i + 1 == 613 ? 577 : i + 1, 0, 0);
         index++;
     }
-    
-    return squares;
+    depth(squares, sphere);
+    return sort_squares(squares, 648);
 }
 
 static point_t *create_point(float r, float theta, float phi, sphere_t *sphere, sfVector2u *size)
@@ -52,6 +71,7 @@ static point_t *create_point(float r, float theta, float phi, sphere_t *sphere, 
         r * sin(theta * M_PI / 180) * sin(phi * M_PI / 180),
         r * cos(theta * M_PI / 180)
     };
+    set_cartesian(&point->cartesian, &point->rotate_cartesian, sphere);
     point->screen = project_iso_point(&point->cartesian, sphere, size);
     return point;
 }
@@ -100,12 +120,12 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
     sphere->r = 1;
+    set_matrix_identity(sphere->rotation);
     sphere->angles.x = 0.0;
     sphere->angles.y = 0.0;
     sphere->zoom = 200;
     sphere->points = create_points(sphere->r, sphere, size);
-    sphere->squares = create_squares(sphere->points);
+    sphere->squares = create_squares(sphere->points, sphere);
     init_axes(sphere, size);
-    set_matrix_identity(sphere->rotation);
     return sphere;
 }

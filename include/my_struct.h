@@ -16,16 +16,18 @@
 typedef struct square_s {
     type_square_t type;
     sfVector2f p[4];
+    int ids[4];
     sfVertex v_square[4];
     sfVertex v_line[4];
     sfVertexArray *square;
     sfVertexArray *lines[4];
-    int depth;
+    float depth;
 } square_t;
 
 typedef struct point_s {
     sfVector3f spherical;
     sfVector3f cartesian;
+    sfVector3f rotate_cartesian;
     sfVector2i screen;
 } point_t;
 
