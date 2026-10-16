@@ -15,11 +15,19 @@
 
 static float depth_calculation(point_t **ps, int nb)
 {
-    float d = 0.0;
+    float d = (ps[0]->rotate_cartesian.x * (sqrt(3) / 2) +
+               ps[0]->rotate_cartesian.y * (sqrt(3) / 2) +
+               ps[0]->rotate_cartesian.z * (sqrt(3) / 2));
+    float temp_d = 0.0;
 
-    for (int i = 1; i < nb; i++)
-        d += (ps[i]->rotate_cartesian.x + ps[i]->rotate_cartesian.y + ps[i]->rotate_cartesian.z);
-    return d / nb;
+    for (int i = 1; i < nb; i++) {
+        temp_d = (ps[i]->rotate_cartesian.x * (sqrt(3) / 2) +
+                  ps[i]->rotate_cartesian.y * (sqrt(3) / 2) +
+                  ps[i]->rotate_cartesian.z * (sqrt(3) / 2));
+        if (temp_d < d)
+            d = temp_d;
+    }
+    return d;
 }
 
 static void depth_square(square_t *square, point_t **points)
