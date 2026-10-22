@@ -5,7 +5,7 @@
 ** Calculate depth for a square
  */
 
-#include <SFML/System.h>
+#include <CSFML/System.h>
 #include <stddef.h>
 #include <math.h>
 
