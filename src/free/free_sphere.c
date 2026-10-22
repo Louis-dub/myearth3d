@@ -19,5 +19,7 @@ void free_sphere(sphere_t *sphere)
     for (int i = 0; i < 648; i++)
         free_square(sphere->squares[i]);
     free(sphere->squares);
+    for (int i = 0; i < 5; i++)
+        sfTexture_destroy(sphere->textures[i]);
     free(sphere);
 }
