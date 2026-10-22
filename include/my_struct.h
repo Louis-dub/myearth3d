@@ -39,6 +39,7 @@ typedef struct sphere_s {
     sfVector3f axes[2];
     float rotation[3][3];
     int zoom;
+    sfTexture *textures[5];
 } sphere_t;
 
 typedef struct window_s {
