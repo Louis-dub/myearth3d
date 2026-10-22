@@ -25,6 +25,7 @@ sphere_t *init_sphere(sfVector2u *size);
 square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4,
                       int i1, int i2, int i3, int i4, int fold);
 square_t **create_squares(point_t **points, sphere_t *sphere);
+void init_textures(sphere_t *sphere);
 
 // free
 void free_earth(earth_t *earth);

@@ -127,5 +127,6 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points, sphere);
     init_axes(sphere, size);
+    init_textures(sphere);
     return sphere;
 }
