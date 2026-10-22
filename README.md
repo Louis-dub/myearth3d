@@ -2,7 +2,7 @@
 This project is an extension of the [myworld](https://github.com/Louis-dub/myworld) project, in which the edited map is no longer flat but spherical.
 This project will also add more editing options.
 
-## Feature (v.2.0)
+## Feature (v.2.1)
 - Display sphere
 - Zoom
 - Resize the window
@@ -17,7 +17,7 @@ Here is a preview of the project:
 
 ## Technologies Used
 - **C**: For isometric calculations, memory management...
-- **CSFML**: For rendering the window and the various graphical elements
+- **CSFML**: For rendering the window and the various graphical elements. **Versions of the app prior to version v2.1 do not use the correct version of CSFML**
 
 ## Installation
 
