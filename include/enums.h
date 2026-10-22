@@ -8,6 +8,14 @@
 #ifndef ENUMS_H_
     #define ENUMS_H_
 
+typedef enum texture_square_s {
+    WATER,
+    SAND,
+    GRASS,
+    ROCK,
+    SNOW
+} texture_square_t;
+
 typedef enum mouse_pressed_s {
     NONE,
     MAP,
