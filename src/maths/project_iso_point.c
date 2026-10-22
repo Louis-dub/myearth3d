@@ -5,8 +5,8 @@
 ** Calculate 2d projection
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/System.h>
 #include <math.h>
 
 #include "my_struct.h"

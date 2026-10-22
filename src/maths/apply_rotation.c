@@ -5,7 +5,7 @@
 ** Calculate new rotation
  */
 
-#include <SFML/System.h>
+#include <CSFML/System.h>
 #include <math.h>
 #include <string.h>
 

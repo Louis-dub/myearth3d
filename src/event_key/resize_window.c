@@ -5,7 +5,7 @@
 ** Resize window and set new view
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 
 #include "my_functions.h"
 #include "my_struct.h"

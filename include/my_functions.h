@@ -7,8 +7,8 @@
 
 #ifndef INCLUDED_MY_FUNCTIONS_H
     #define INCLUDED_MY_FUNCTIONS_H
-    #include <SFML/Graphics.h>
-    #include <SFML/System.h>
+    #include <CSFML/Graphics.h>
+    #include <CSFML/System.h>
     #include "my_struct.h"
 
 // src

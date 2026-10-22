@@ -5,8 +5,8 @@
 ** Calculate cartseian coordonates
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/System.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/System.h>
 #include <stdlib.h>
 #include <math.h>
 

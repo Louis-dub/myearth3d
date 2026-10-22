@@ -5,7 +5,7 @@
 ** launch csfml window
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 #include <stddef.h>
 
 #include "my_functions.h"

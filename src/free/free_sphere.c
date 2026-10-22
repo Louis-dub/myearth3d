@@ -5,7 +5,7 @@
 ** free square
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 #include <stdlib.h>
 
 #include "my_functions.h"

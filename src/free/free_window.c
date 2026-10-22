@@ -5,7 +5,7 @@
 ** free_window
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 #include <stdlib.h>
 
 #include "my_struct.h"

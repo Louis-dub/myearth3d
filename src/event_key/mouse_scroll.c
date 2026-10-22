@@ -5,7 +5,7 @@
 ** set zoom mhen scrolled
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 
 #include "my_functions.h"
 #include "my_struct.h"

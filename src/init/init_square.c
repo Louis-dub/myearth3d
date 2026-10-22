@@ -5,9 +5,9 @@
 ** init a square
 */
 
-#include <SFML/Graphics.h>
-#include <SFML/Graphics/Vertex.h>
-#include <SFML/System.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/Graphics/Vertex.h>
+#include <CSFML/System.h>
 #include <stdlib.h>
 
 #include "enums.h"

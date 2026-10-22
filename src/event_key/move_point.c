@@ -5,7 +5,7 @@
 ** Move points
  */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 #include <math.h>
 
 #include "my_functions.h"
@@ -26,8 +26,8 @@ void move_point(window_t *w, sphere_t *sphere)
     float y = w->coor_mouse_pressed.y - w->size.y / 2.0;
     int id = w->touch_point;
     sfVector2f add_radius_2d = {
-        w->event.mouseMove.x - w->coor_mouse_pressed.x,
-        w->event.mouseMove.y - w->coor_mouse_pressed.y
+        w->event.mouseMove.position.x - w->coor_mouse_pressed.x,
+        w->event.mouseMove.position.y - w->coor_mouse_pressed.y
     };
     float sign = add_radius_2d.x * x < 0 || add_radius_2d.y * y < 0 ? -1.0 : 1.0;
     float d = sqrt(pow(add_radius_2d.x, 2) + pow(add_radius_2d.y, 2)) / sphere->zoom * sign;
@@ -41,6 +41,6 @@ void move_point(window_t *w, sphere_t *sphere)
               sphere->points[id]->spherical.y, sphere->points[id]->spherical.z);
     set_cartesian(&sphere->points[id]->cartesian, &sphere->points[id]->rotate_cartesian, sphere);
     recalculation(w, sphere);
-    w->coor_mouse_pressed.x = w->event.mouseMove.x;
-    w->coor_mouse_pressed.y = w->event.mouseMove.y;
+    w->coor_mouse_pressed.x = w->event.mouseMove.position.x;
+    w->coor_mouse_pressed.y = w->event.mouseMove.position.y;
 }

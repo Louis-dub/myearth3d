@@ -5,7 +5,7 @@
 ** Analyse key and mouse events
 */
 
-#include <SFML/Graphics.h>
+#include <CSFML/Graphics.h>
 
 #include "enums.h"
 #include "my_functions.h"
@@ -13,8 +13,8 @@
 
 static void mouse_pressed(window_t *w, sphere_t *sphere)
 {
-    int x = w->event.mouseButton.x;
-    int y = w->event.mouseButton.y;
+    int x = w->event.mouseButton.position.x;
+    int y = w->event.mouseButton.position.y;
     int t = 0;
     int id = 0;
 
