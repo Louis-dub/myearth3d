@@ -11,7 +11,12 @@
     #include <CSFML/System.h>
     #include <stdbool.h>
 
-    #include "enums.h"
+#include "enums.h"
+
+typedef struct color_s {
+    sfColor color;
+    sfTexture *texture;
+} color_t;
 
 typedef struct square_s {
     type_square_t type;
@@ -22,6 +27,7 @@ typedef struct square_s {
     sfVertexArray *square;
     sfVertexArray *lines[4];
     float depth;
+    sfTexture *texture;
 } square_t;
 
 typedef struct point_s {
@@ -39,6 +45,7 @@ typedef struct sphere_s {
     sfVector3f axes[2];
     float rotation[3][3];
     int zoom;
+    color_t colors[5];
 } sphere_t;
 
 typedef struct window_s {

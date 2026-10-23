@@ -13,17 +13,32 @@
 #include "enums.h"
 #include "my_struct.h"
 
-static void set_v_square(square_t *square)
+static sfColor get_land_color(square_t *square, sphere_t *sphere,  int i)
+{
+    float r = sphere->points[i]->spherical.x;
+
+    if (r < 1.1)
+        return sphere->colors[0].color;
+    if (r < 1.2)
+        return sphere->colors[1].color;
+    if (r < 1.5)
+        return sphere->colors[2].color;
+    if (r < 1.8)
+        return sphere->colors[3].color;
+    return sphere->colors[4].color;
+}
+
+static void set_v_square(square_t *square, sphere_t *sphere)
 {
     square->v_square[0].position = square->p[0];
-    square->v_square[0].color = sfCyan;
+    square->v_square[0].color = get_land_color(square, sphere, square->ids[0]);
     square->v_square[1].position = square->p[1];
-    square->v_square[1].color = sfCyan;
+    square->v_square[1].color = get_land_color(square, sphere, square->ids[1]);
     square->v_square[2].position = square->p[2];
-    square->v_square[2].color = sfCyan;
+    square->v_square[2].color = get_land_color(square, sphere, square->ids[2]);
     if (square->type == SQUARE) {
         square->v_square[3].position = square->p[3];
-        square->v_square[3].color = sfCyan;
+        square->v_square[3].color = get_land_color(square, sphere, square->ids[3]);
     }
 }
 
@@ -96,7 +111,7 @@ static void set_lines(square_t *square)
 }
 
 square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i *p4,
-                      int i1, int i2, int i3, int i4, int fold)
+                      int i1, int i2, int i3, int i4, int fold, sphere_t *sphere)
 {
     square_t *square = malloc(sizeof(square_t));
 
@@ -113,7 +128,7 @@ square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i
     } else {
         square->type = TRIANGLE;
     }
-    set_v_square(square);
+    set_v_square(square, sphere);
     set_v_lines(square);
     set_square_array(square, fold);
     set_lines(square);

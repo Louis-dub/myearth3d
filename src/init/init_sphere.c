@@ -32,7 +32,7 @@ square_t **create_squares(point_t **points, sphere_t *sphere)
 
     for (int i = 1; i < 37; i++) {
         squares[index] = init_square(&points[0]->screen, &points[i]->screen, &points[i % 36 + 1]->screen, NULL,
-                                     0, i, i % 36 + 1, 0, 0);
+                                     0, i, i % 36 + 1, 0, 0, sphere);
         index++;
     }
     for (int i = 0; i < 16; i++) {
@@ -48,13 +48,13 @@ square_t **create_squares(point_t **points, sphere_t *sphere)
                                                                                points[p[1]]->spherical.x,
                                                                                points[p[2]]->spherical.x,
                                                                                points[p[3]]->spherical.x
-                                                                           ));
+                                                                           ), sphere);
             index++;
         }
     }
     for (int i = 577; i < 613; i++) {
         squares[index] = init_square(&points[613]->screen, &points[i]->screen, &points[i + 1 == 613 ? 577 : i + 1]->screen, NULL,
-                                     613, i, i + 1 == 613 ? 577 : i + 1, 0, 0);
+                                     613, i, i + 1 == 613 ? 577 : i + 1, 0, 0, sphere);
         index++;
     }
     depth(squares, sphere);
@@ -127,5 +127,6 @@ sphere_t *init_sphere(sfVector2u *size)
     sphere->points = create_points(sphere->r, sphere, size);
     sphere->squares = create_squares(sphere->points, sphere);
     init_axes(sphere, size);
+    init_textures(sphere);
     return sphere;
 }
