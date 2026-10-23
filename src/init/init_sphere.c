@@ -119,7 +119,7 @@ sphere_t *init_sphere(sfVector2u *size)
 {
     sphere_t *sphere = malloc(sizeof(sphere_t));
 
-    sphere->r = 1;
+    sphere->r = 1.1;
     set_matrix_identity(sphere->rotation);
     sphere->angles.x = 0.0;
     sphere->angles.y = 0.0;
