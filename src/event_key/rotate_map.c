@@ -2,7 +2,7 @@
 ** DUBOIS PROJECT, 2026
 ** myearth3d
 ** File description:
-** move the sphere
+** Rotate the sphere
  */
 
 #include "my_functions.h"

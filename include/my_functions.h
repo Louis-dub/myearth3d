@@ -46,5 +46,6 @@ void resize_window(window_t *w, sphere_t *sphere);
 void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
+void move_map(earth_t *earth, sfKeyCode code);
 
 #endif

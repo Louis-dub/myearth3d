@@ -6,6 +6,7 @@
 */
 
 #include <CSFML/Graphics.h>
+#include <CSFML/Window/Event.h>
 
 #include "enums.h"
 #include "my_functions.h"
@@ -41,24 +42,27 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
 {
     switch (w->event.type) {
     case sfEvtResized:
-            resize_window(w, earth->sphere);
-            break;
-        case sfEvtMouseWheelScrolled:
-            mouse_scroll(w, earth->sphere);
-            break;
-        case sfEvtMouseButtonPressed:
-            mouse_pressed(w, earth->sphere);
-            break;
-        case sfEvtMouseButtonReleased:
-            w->if_mouse_pressed = NONE;
-            break;
-        case sfEvtMouseMoved:
-            if (w->if_mouse_pressed == MAP)
-                rotate_map(w, earth->sphere);
-            if (w->if_mouse_pressed == POINT)
-                move_point(w, earth->sphere);
-            break;
-        default:
-            break;
+        resize_window(w, earth->sphere);
+        break;
+    case sfEvtMouseWheelScrolled:
+        mouse_scroll(w, earth->sphere);
+        break;
+    case sfEvtMouseButtonPressed:
+        mouse_pressed(w, earth->sphere);
+        break;
+    case sfEvtMouseButtonReleased:
+        w->if_mouse_pressed = NONE;
+        break;
+    case sfEvtMouseMoved:
+        if (w->if_mouse_pressed == MAP)
+            rotate_map(w, earth->sphere);
+        if (w->if_mouse_pressed == POINT)
+            move_point(w, earth->sphere);
+        break;
+    case sfEvtKeyPressed:
+        move_map(earth, w->event.key.code);
+        break;
+    default:
+        break;
     }
 }

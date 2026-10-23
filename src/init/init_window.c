@@ -6,8 +6,7 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/RenderWindow.h>
-#include <CSFML/Window/WindowBase.h>
+#include <CSFML/Window.h>
 #include <stdlib.h>
 
 #include "enums.h"
@@ -26,6 +25,8 @@ window_t *init_window(void)
     w->window = sfRenderWindow_create(v, "myearth3d", sfDefaultStyle, sfWindowed, NULL);
     sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
+    w->set_view.x = 0.0;
+    w->set_view.y = 0.0;
     w->if_mouse_pressed = NONE;
     return w;
 }

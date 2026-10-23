@@ -53,6 +53,7 @@ typedef struct window_s {
     sfEvent event;
     sfVector2u size;
     sfView *view;
+    sfVector2f set_view;
     mouse_pressed_t if_mouse_pressed;
     sfVector2i coor_mouse_pressed;
     int touch_point;
