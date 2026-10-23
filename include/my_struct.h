@@ -27,6 +27,7 @@ typedef struct square_s {
     sfVertexArray *square;
     sfVertexArray *lines[4];
     float depth;
+    sfTexture *texture;
 } square_t;
 
 typedef struct point_s {

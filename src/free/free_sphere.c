@@ -20,6 +20,6 @@ void free_sphere(sphere_t *sphere)
         free_square(sphere->squares[i]);
     free(sphere->squares);
     for (int i = 0; i < 5; i++)
-        sfTexture_destroy(sphere->textures[i]);
+        sfTexture_destroy(sphere->colors[i].texture);
     free(sphere);
 }
