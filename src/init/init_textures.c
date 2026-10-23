@@ -45,6 +45,8 @@ void init_textures(sphere_t *sphere)
       sfColor_fromRGB(240, 230, 255)
     };
 
-    for (int i = 0; i < 5; i++)
-        sphere->textures[i] = create_texture(&colors[i]);
+    for (int i = 0; i < 5; i++) {
+        sphere->colors[i].color = colors[i];
+        sphere->colors[i].texture = create_texture(&colors[i]);
+    }
 }
