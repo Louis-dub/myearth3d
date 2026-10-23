@@ -8,7 +8,7 @@
 #include "my_functions.h"
 #include "my_struct.h"
 
-void move_map(window_t *w, sphere_t *sphere)
+void rotate_map(window_t *w, sphere_t *sphere)
 {
     float delta_x = w->coor_mouse_pressed.x - w->event.mouseMove.position.x;
     float delta_y = w->coor_mouse_pressed.y - w->event.mouseMove.position.y;
