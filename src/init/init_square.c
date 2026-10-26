@@ -28,6 +28,26 @@ static sfColor get_land_color(square_t *square, sphere_t *sphere,  int i)
     return sphere->colors[4].color;
 }
 
+static int set_texture(square_t *square, sphere_t *sphere)
+{
+    int nb = square->type == SQUARE ? 4 : 2;
+    float r = sphere->points[square->ids[0]]->spherical.x;
+
+    for (int i = 1; i < nb; i++)
+      r = r > sphere->points[square->ids[i]]->spherical.x
+          ? sphere->points[square->ids[0]]->spherical.x
+          : r;
+    if (r < 1.1)
+        return 0;
+    if (r < 1.2)
+        return 1;
+    if (r < 1.5)
+        return 2;
+    if (r < 1.8)
+        return 3;
+    return 4;
+}    
+
 static void set_v_square(square_t *square, sphere_t *sphere)
 {
     square->v_square[0].position = square->p[0];
@@ -132,5 +152,6 @@ square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i
     set_v_lines(square);
     set_square_array(square, fold);
     set_lines(square);
+    square->id_t = set_texture(square, sphere);
     return square;
 }
