@@ -6,7 +6,6 @@
  */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Color.h>
 #include <CSFML/System.h>
 #include <math.h>
 #include <stdint.h>
@@ -33,7 +32,6 @@ sfTexture *create_texture(sfColor *color)
     sfImage_destroy(image);
     return texture;
 }
-
 
 void init_textures(sphere_t *sphere)
 {

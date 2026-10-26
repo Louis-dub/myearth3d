@@ -7,7 +7,6 @@
 
 #include <CSFML/Graphics.h>
 #include <math.h>
-#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"

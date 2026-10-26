@@ -6,9 +6,9 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "enums.h"
 #include "my_struct.h"
@@ -28,18 +28,39 @@ static sfColor get_land_color(square_t *square, sphere_t *sphere,  int i)
     return sphere->colors[4].color;
 }
 
+static int set_texture(square_t *square, sphere_t *sphere)
+{
+    int nb = square->type == SQUARE ? 4 : 2;
+    float r = sphere->points[square->ids[0]]->spherical.x;
+
+    for (int i = 1; i < nb; i++)
+        r = fmin(r, sphere->points[square->ids[i]]->spherical.x);
+    if (r < 1.1)
+        return 0;
+    if (r < 1.2)
+        return 1;
+    if (r < 1.5)
+        return 2;
+    if (r < 1.8)
+        return 3;
+    return 4;
+}
+
 static void set_v_square(square_t *square, sphere_t *sphere)
 {
-    square->v_square[0].position = square->p[0];
-    square->v_square[0].color = get_land_color(square, sphere, square->ids[0]);
-    square->v_square[1].position = square->p[1];
-    square->v_square[1].color = get_land_color(square, sphere, square->ids[1]);
-    square->v_square[2].position = square->p[2];
-    square->v_square[2].color = get_land_color(square, sphere, square->ids[2]);
-    if (square->type == SQUARE) {
-        square->v_square[3].position = square->p[3];
-        square->v_square[3].color = get_land_color(square, sphere, square->ids[3]);
-    }
+    square->v_square[0] =
+        (sfVertex) {
+        square->p[0], get_land_color(square, sphere, square->ids[0]), (sfVector2f){0, 0}};
+    square->v_square[1] =
+        (sfVertex){square->p[1], get_land_color(square, sphere, square->ids[1]),
+                   (sfVector2f){256, 0}};
+    square->v_square[2] =
+        (sfVertex){square->p[2], get_land_color(square, sphere, square->ids[2]),
+                   (sfVector2f){256, 256}};
+    if (square->type == SQUARE)
+        square->v_square[3] =
+            (sfVertex) {square->p[3], get_land_color(square, sphere, square->ids[3]),
+                        (sfVector2f){0, 256}};
 }
 
 static void set_v_lines(square_t *square)
@@ -132,5 +153,6 @@ square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i
     set_v_lines(square);
     set_square_array(square, fold);
     set_lines(square);
+    square->id_t = set_texture(square, sphere);
     return square;
 }
