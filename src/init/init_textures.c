@@ -34,7 +34,6 @@ sfTexture *create_texture(sfColor *color)
     return texture;
 }
 
-
 void init_textures(sphere_t *sphere)
 {
     sfColor colors[5] = {

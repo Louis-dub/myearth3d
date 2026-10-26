@@ -6,8 +6,10 @@
 */
 
 #include <CSFML/Graphics.h>
+#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System.h>
+#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -45,20 +47,23 @@ static int set_texture(square_t *square, sphere_t *sphere)
     if (r < 1.8)
         return 3;
     return 4;
-}    
+}
 
 static void set_v_square(square_t *square, sphere_t *sphere)
 {
-    square->v_square[0].position = square->p[0];
-    square->v_square[0].color = get_land_color(square, sphere, square->ids[0]);
-    square->v_square[1].position = square->p[1];
-    square->v_square[1].color = get_land_color(square, sphere, square->ids[1]);
-    square->v_square[2].position = square->p[2];
-    square->v_square[2].color = get_land_color(square, sphere, square->ids[2]);
-    if (square->type == SQUARE) {
-        square->v_square[3].position = square->p[3];
-        square->v_square[3].color = get_land_color(square, sphere, square->ids[3]);
-    }
+    square->v_square[0] =
+        (sfVertex) {
+        square->p[0], get_land_color(square, sphere, square->ids[0]), (sfVector2f){0, 0}};
+    square->v_square[1] =
+        (sfVertex){square->p[1], get_land_color(square, sphere, square->ids[1]),
+                   (sfVector2f){0, 0}};
+    square->v_square[2] =
+        (sfVertex){square->p[2], get_land_color(square, sphere, square->ids[2]),
+                   (sfVector2f){0, 0}};
+    if (square->type == SQUARE)
+        square->v_square[3] =
+            (sfVertex) {square->p[3], get_land_color(square, sphere, square->ids[3]),
+                        (sfVector2f){0, 0}};
 }
 
 static void set_v_lines(square_t *square)
