@@ -9,6 +9,7 @@
 #include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "enums.h"
 #include "my_struct.h"
@@ -34,9 +35,7 @@ static int set_texture(square_t *square, sphere_t *sphere)
     float r = sphere->points[square->ids[0]]->spherical.x;
 
     for (int i = 1; i < nb; i++)
-      r = r > sphere->points[square->ids[i]]->spherical.x
-          ? sphere->points[square->ids[0]]->spherical.x
-          : r;
+        r = fmin(r, sphere->points[square->ids[i]]->spherical.x);
     if (r < 1.1)
         return 0;
     if (r < 1.2)
