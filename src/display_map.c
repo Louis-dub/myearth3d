@@ -6,7 +6,6 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/RenderStates.h>
 #include <stdlib.h>
 
 #include "my_functions.h"

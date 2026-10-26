@@ -6,7 +6,6 @@
  */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Color.h>
 #include <CSFML/System.h>
 #include <math.h>
 #include <stdint.h>

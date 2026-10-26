@@ -6,7 +6,7 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Window/Event.h>
+#include <CSFML/Window.h>
 
 #include "enums.h"
 #include "my_functions.h"
@@ -23,14 +23,11 @@ static void mouse_pressed(window_t *w, sphere_t *sphere)
     w->coor_mouse_pressed.x = x;
     w->coor_mouse_pressed.y = y;
     for (int i = 0; i < 648; i++) {
-        if (sphere->squares[i]->type == SQUARE)
-            t = 4;
-        else
-            t = 3;
+        t = sphere->squares[i]->type == SQUARE ? 4 : 3;
         for (int j = 0; j < t; j++) {
             id = sphere->squares[i]->ids[j];
-            if (sphere->points[id]->screen.x - 10 <= x && sphere->points[id]->screen.x + 10 >= x &&
-                sphere->points[id]->screen.y - 10 <= y && sphere->points[id]->screen.y + 10 >= y) {
+            if ((sphere->points[id]->screen.x - w->set_view.x) - 10 <= x && (sphere->points[id]->screen.x - w->set_view.x) + 10 >= x &&
+                (sphere->points[id]->screen.y - w->set_view.y) - 10 <= y && (sphere->points[id]->screen.y - w->set_view.y) + 10 >= y) {
                 w->if_mouse_pressed = POINT;
                 w->touch_point = id;
             }
