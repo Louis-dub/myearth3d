@@ -6,10 +6,7 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Types.h>
-#include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System.h>
-#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -56,14 +53,14 @@ static void set_v_square(square_t *square, sphere_t *sphere)
         square->p[0], get_land_color(square, sphere, square->ids[0]), (sfVector2f){0, 0}};
     square->v_square[1] =
         (sfVertex){square->p[1], get_land_color(square, sphere, square->ids[1]),
-                   (sfVector2f){0, 0}};
+                   (sfVector2f){256, 0}};
     square->v_square[2] =
         (sfVertex){square->p[2], get_land_color(square, sphere, square->ids[2]),
-                   (sfVector2f){0, 0}};
+                   (sfVector2f){256, 256}};
     if (square->type == SQUARE)
         square->v_square[3] =
             (sfVertex) {square->p[3], get_land_color(square, sphere, square->ids[3]),
-                        (sfVector2f){0, 0}};
+                        (sfVector2f){0, 256}};
 }
 
 static void set_v_lines(square_t *square)
