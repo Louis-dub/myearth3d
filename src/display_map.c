@@ -6,6 +6,7 @@
 */
 
 #include <CSFML/Graphics.h>
+#include <CSFML/Graphics/RenderStates.h>
 #include <stdlib.h>
 
 #include "my_functions.h"
@@ -14,10 +15,12 @@
 void display_map(sfRenderWindow *w, sphere_t *sphere)
 {
     int nb_line = 4;
+    sfRenderStates states = sfRenderStates_default;
 
     if (sphere->squares) {
         for (int i = 0; i < 648; i++) {
-            sfRenderWindow_drawVertexArray(w, sphere->squares[i]->square, NULL);
+            states.texture = sphere->colors[sphere->squares[i]->id_t].texture;
+            sfRenderWindow_drawVertexArray(w, sphere->squares[i]->square, &states);
             if (sphere->squares[i]->type == SQUARE)
                 nb_line = 4;
             else
