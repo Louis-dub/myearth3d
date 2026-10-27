@@ -28,7 +28,7 @@ earth_t *init_earth(void)
 
     earth->w = init_window();
     earth->sphere = init_sphere(&earth->w->size);
-    earth->button_textures = load_btn_texture();
+    earth->btn_textures = load_btn_texture();
     earth->buttons[RESET] = "reset";
     return earth;
 }

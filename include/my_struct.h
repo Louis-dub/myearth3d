@@ -68,7 +68,7 @@ typedef struct button_s {
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
-    button_t *button_textures;
+    button_t *btn_textures;
     char *buttons[BTN_COUNT];
 } earth_t;
 
