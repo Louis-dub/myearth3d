@@ -8,7 +8,10 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <CSFML/Graphics.h>
+#include <CSFML/Graphics/Rect.h>
+#include <CSFML/Graphics/Types.h>
     #include <CSFML/System.h>
+#include <CSFML/System/Vector2.h>
     #include <stdbool.h>
 
 #include "enums.h"
@@ -60,10 +63,16 @@ typedef struct window_s {
 } window_t;
 
 typedef struct button_s {
+    char *text;
+    sfVector2i *position;
+    sfSprite *sprite;
+} button_t;
+
+typedef struct button_texture_s {
     sfTexture *base_text;
     sfTexture *hover_text;
     sfTexture *click_text;
-} button_t;
+} button_texture_t;
 
 typedef struct earth_s {
     window_t *w;
