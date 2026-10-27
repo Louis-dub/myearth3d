@@ -59,9 +59,17 @@ typedef struct window_s {
     int touch_point;
 } window_t;
 
+typedef struct button_s {
+    sfTexture *base_text;
+    sfTexture *hover_text;
+    sfTexture *click_text;
+} button_t;
+
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
+    button_t *button_textures;
+    char *buttons[BTN_COUNT];
 } earth_t;
 
 #endif
