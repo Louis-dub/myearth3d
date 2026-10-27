@@ -12,5 +12,6 @@
 
 void display_button(earth_t *earth)
 {
-    
+    for (int i = 0; i < BTN_COUNT; i++)
+        sfRenderWindow_drawSprite(earth->w->window, earth->buttons[i]->display, NULL);
 }

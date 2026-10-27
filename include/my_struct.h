@@ -64,6 +64,8 @@ typedef struct button_s {
     sfSprite *base;
     sfSprite *hover;
     sfSprite *click;
+    sfSprite *display;
+    sfVector2f *position;
 } button_t;
 
 typedef struct button_texture_s {

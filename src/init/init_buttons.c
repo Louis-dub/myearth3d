@@ -33,6 +33,8 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
     sfSprite_setPosition(button->hover, *pos);
     button->click = sfSprite_create(textures->click_text);
     sfSprite_setPosition(button->click, *pos);
+    button->display = button->base;
+    button->position = pos;
     return button;
 }    
 

@@ -15,8 +15,6 @@
 int launch_window(void);
 void analyse_event(earth_t *earth, window_t *w);
 square_t **sort_squares(square_t **squares, int len);
-void display_map(sfRenderWindow *w, sphere_t *sphere);
-void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 
 // init
 earth_t *init_earth(void);
@@ -51,5 +49,10 @@ void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
+
+// display
+void display_map(sfRenderWindow *w, sphere_t *sphere);
+void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
+void display_button(earth_t *earth);
 
 #endif
