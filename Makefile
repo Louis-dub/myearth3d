@@ -32,9 +32,9 @@ all: $(NAME)
 # Cible ASan : on redéfinit explicitement les variables pour cette règle
 asan: CFLAGS = $(CFLAGS_BASE) -fsanitize=address
 asan: LDFLAGS = $(LDFLAGS_BASE) -fsanitize=address
-asan: export LSAN_OPTIONS = use_stacks=0:use_registers=0
+asan: export LSAN_OPTIONS = use_stacks=0:use_registers=0:suppressions=asan_delete.txt
 asan: clean $(NAME)
-	./$(NAME)
+	ASAN_OPTIONS=detect_leaks=1 ./$(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)

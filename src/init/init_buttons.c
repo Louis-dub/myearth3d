@@ -14,7 +14,7 @@
 
 button_texture_t *load_btn_texture(void)
 {
-    button_texture_t *btn_texture = malloc(sizeof(button_t));
+    button_texture_t *btn_texture = malloc(sizeof(button_texture_t));
 
     btn_texture->base_text = sfTexture_createFromFile("assets/b.png", NULL);
     btn_texture->hover_text = sfTexture_createFromFile("assets/hover_button.png", NULL);
