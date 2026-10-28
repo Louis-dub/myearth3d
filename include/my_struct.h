@@ -62,7 +62,7 @@ typedef struct window_s {
 } window_t;
 
 typedef struct button_s {
-    char *text;
+    sfText *text;
     sfSprite *base;
     sfSprite *hover;
     sfSprite *click;
@@ -82,6 +82,7 @@ typedef struct earth_s {
     button_texture_t *btn_textures;
     button_t *buttons[BTN_COUNT];
     int btn_click;
+    sfFont *font;
 } earth_t;
 
 #endif

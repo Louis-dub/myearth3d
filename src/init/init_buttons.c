@@ -22,11 +22,12 @@ button_texture_t *load_btn_texture(void)
     return btn_texture;
 }
 
-static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos)
+static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos, sfFont *font)
 {
     button_t *button = malloc(sizeof(button_t));
 
-    button->text = text;
+    button->text = sfText_create(font);
+    sfText_setCharacterSize(button->text, 25);
     button->base = sfSprite_create(textures->base_text);
     sfSprite_setPosition(button->base, *pos);
     button->hover = sfSprite_create(textures->hover_text);
@@ -41,5 +42,5 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
 
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth)
 {
-    buttons[RESET] = create_button("RESET", earth->btn_textures, &(sfVector2f){0.0, 0.0});
+    buttons[RESET] = create_button("RESET", earth->btn_textures, &(sfVector2f){0.0, 0.0}, earth->font);
 }

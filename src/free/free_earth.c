@@ -5,6 +5,7 @@
 ** free struct all datas
 */
 
+#include <CSFML/Graphics.h>
 #include <stdlib.h>
 
 #include "my_functions.h"
@@ -16,5 +17,6 @@ void free_earth(earth_t *earth)
     free_sphere(earth->sphere);
     free_btn_text(earth->btn_textures);
     free_buttons(earth->buttons);
+    sfFont_destroy(earth->font);
     free(earth);
 }

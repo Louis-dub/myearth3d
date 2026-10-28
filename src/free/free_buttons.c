@@ -20,6 +20,7 @@ void free_btn_text(button_texture_t *btn_texture)
 
 static void free_button(button_t *btn)
 {
+    sfText_destroy(btn->text);
     sfSprite_destroy(btn->base);
     sfSprite_destroy(btn->hover);
     sfSprite_destroy(btn->click);
