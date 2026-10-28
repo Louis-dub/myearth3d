@@ -5,6 +5,7 @@
 ** init all datas
 */
 
+#include <CSFML/Graphics.h>
 #include <stdlib.h>
 
 #include "my_functions.h"
@@ -16,5 +17,9 @@ earth_t *init_earth(void)
 
     earth->w = init_window();
     earth->sphere = init_sphere(&earth->w->size);
+    earth->btn_textures = load_btn_texture();
+    earth->btn_click = -1;
+    earth->font = sfFont_createFromFile("assets/Minecraft.ttf");
+    init_button(earth->buttons, earth);
     return earth;
 }

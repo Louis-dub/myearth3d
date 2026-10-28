@@ -9,6 +9,7 @@
     #define INCLUDED_MY_STRUCT_H
     #include <CSFML/Graphics.h>
     #include <CSFML/System.h>
+    #include <CSFML/Window.h>
     #include <stdbool.h>
 
 #include "enums.h"
@@ -57,11 +58,32 @@ typedef struct window_s {
     mouse_pressed_t if_mouse_pressed;
     sfVector2i coor_mouse_pressed;
     int touch_point;
+    sfCursor *cursors[TYPE_COUNT];
 } window_t;
+
+typedef struct button_s {
+    sfText *text;
+    sfSprite *base;
+    sfSprite *hover;
+    sfSprite *click;
+    sfSprite *display;
+    sfVector2f position;
+    sfVector2f og_pos;
+} button_t;
+
+typedef struct button_texture_s {
+    sfTexture *base_text;
+    sfTexture *hover_text;
+    sfTexture *click_text;
+} button_texture_t;
 
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
+    button_texture_t *btn_textures;
+    button_t *buttons[BTN_COUNT];
+    int btn_click;
+    sfFont *font;
 } earth_t;
 
 #endif

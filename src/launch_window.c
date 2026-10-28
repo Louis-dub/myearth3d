@@ -20,6 +20,7 @@ int launch_window(void)
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
         display_map(earth->w->window, earth->sphere);
+        display_button(earth);
         sfRenderWindow_display(earth->w->window);
     }
     free_earth(earth);

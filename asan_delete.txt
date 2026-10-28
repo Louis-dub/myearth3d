@@ -1,0 +1,2 @@
+leak:libfreetype.so
+leak:libsfml-graphics.so

@@ -15,8 +15,6 @@
 int launch_window(void);
 void analyse_event(earth_t *earth, window_t *w);
 square_t **sort_squares(square_t **squares, int len);
-void display_map(sfRenderWindow *w, sphere_t *sphere);
-void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 
 // init
 earth_t *init_earth(void);
@@ -26,12 +24,16 @@ square_t *init_square(sfVector2i *p1, sfVector2i *p2, sfVector2i *p3, sfVector2i
                       int i1, int i2, int i3, int i4, int fold, sphere_t *sphere);
 square_t **create_squares(point_t **points, sphere_t *sphere);
 void init_textures(sphere_t *sphere);
+button_texture_t *load_btn_texture(void);
+void init_button(button_t *buttons[BTN_COUNT], earth_t *earth);
 
 // free
 void free_earth(earth_t *earth);
 void free_window(window_t *w);
 void free_square(square_t *square);
 void free_sphere(sphere_t *sphere);
+void free_btn_text(button_texture_t *btn_texture);
+void free_buttons(button_t *buttons[BTN_COUNT]);
 
 // maths
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
@@ -47,5 +49,13 @@ void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
+void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w);
+void btn_released(button_t *btn, earth_t *earth);
+void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
+
+// display
+void display_map(sfRenderWindow *w, sphere_t *sphere);
+void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
+void display_button(earth_t *earth);
 
 #endif
