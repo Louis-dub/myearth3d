@@ -44,6 +44,6 @@ void move_map(earth_t *earth, sfKeyCode code)
     default:
         break;
     }
-    set_pos_btn(earth->buttons, set_view);
+    //set_pos_btn(earth->buttons, set_view);
     resize_window(earth->w, earth->sphere);
 }

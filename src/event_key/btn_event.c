@@ -34,13 +34,15 @@ void btn_released(button_t *btn, earth_t *earth)
     earth->btn_click = -1;
     earth->w->set_view.x = 0.0;
     earth->w->set_view.y = 0.0;
+    earth->sphere->zoom = 200;
     for (int i = 0; i < 614; i++) {
         earth->sphere->points[i]->spherical.x = earth->sphere->r;
         reset_point(earth->sphere->points[i]);
-        set_cartesian(&earth->sphere->points[i]->cartesian,
-                      &earth->sphere->points[i]->rotate_cartesian,
-                      earth->sphere);
     }
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            earth->sphere->rotation[i][j] = i == j ? 1.0 : 0.0;
+    apply_rotation(earth->sphere);
     resize_window(earth->w, earth->sphere);
 }
 
