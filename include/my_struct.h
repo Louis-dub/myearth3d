@@ -81,6 +81,7 @@ typedef struct earth_s {
     sphere_t *sphere;
     button_texture_t *btn_textures;
     button_t *buttons[BTN_COUNT];
+    int btn_click;
 } earth_t;
 
 #endif

@@ -9,9 +9,16 @@
 #include <CSFML/System.h>
 #include <CSFML/Window.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "my_struct.h"
 #include "enums.h"
+
+void btn_released(button_t *btn, earth_t *earth)
+{
+    btn->display = btn->base;
+    earth->btn_click = -1;
+}
 
 void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w)
 {
