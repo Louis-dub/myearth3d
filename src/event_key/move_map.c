@@ -13,11 +13,11 @@
 #include "my_struct.h"
 #include "my_functions.h"
 
-static void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view)
+void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view)
 {
     for (int i = 0; i < BTN_COUNT; i++) {
-        buttons[i]->position.x += set_view->x;
-        buttons[i]->position.y += set_view->y;
+        buttons[i]->position.x = 0.0 + set_view->x;
+        buttons[i]->position.y = 0.0 + set_view->y;
         sfSprite_setPosition(buttons[i]->base, buttons[i]->position);
         sfSprite_setPosition(buttons[i]->hover, buttons[i]->position);
         sfSprite_setPosition(buttons[i]->click, buttons[i]->position);
@@ -44,6 +44,6 @@ void move_map(earth_t *earth, sfKeyCode code)
     default:
         break;
     }
-    //set_pos_btn(earth->buttons, set_view);
+    set_pos_btn(earth->buttons, set_view);
     resize_window(earth->w, earth->sphere);
 }

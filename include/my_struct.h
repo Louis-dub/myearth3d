@@ -9,7 +9,7 @@
     #define INCLUDED_MY_STRUCT_H
     #include <CSFML/Graphics.h>
     #include <CSFML/System.h>
-#include <CSFML/Window/Types.h>
+    #include <CSFML/Window.h>
     #include <stdbool.h>
 
 #include "enums.h"

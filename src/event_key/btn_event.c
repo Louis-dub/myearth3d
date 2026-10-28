@@ -44,6 +44,7 @@ void btn_released(button_t *btn, earth_t *earth)
             earth->sphere->rotation[i][j] = i == j ? 1.0 : 0.0;
     apply_rotation(earth->sphere);
     resize_window(earth->w, earth->sphere);
+    set_pos_btn(earth->buttons, &earth->w->set_view);
 }
 
 void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w)
