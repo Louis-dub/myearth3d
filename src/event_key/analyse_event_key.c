@@ -7,7 +7,6 @@
 
 #include <CSFML/Graphics.h>
 #include <CSFML/Window.h>
-#include <CSFML/Window/Event.h>
 #include <stdbool.h>
 
 #include "enums.h"
