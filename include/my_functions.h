@@ -49,6 +49,7 @@ void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
+void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w);
 
 // display
 void display_map(sfRenderWindow *w, sphere_t *sphere);

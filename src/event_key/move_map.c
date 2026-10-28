@@ -16,11 +16,11 @@
 static void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view)
 {
     for (int i = 0; i < BTN_COUNT; i++) {
-        buttons[i]->position->x += set_view->x;
-        buttons[i]->position->y += set_view->y;
-        sfSprite_setPosition(buttons[i]->base, *buttons[i]->position);
-        sfSprite_setPosition(buttons[i]->hover, *buttons[i]->position);
-        sfSprite_setPosition(buttons[i]->click, *buttons[i]->position);
+        buttons[i]->position.x += set_view->x;
+        buttons[i]->position.y += set_view->y;
+        sfSprite_setPosition(buttons[i]->base, buttons[i]->position);
+        sfSprite_setPosition(buttons[i]->hover, buttons[i]->position);
+        sfSprite_setPosition(buttons[i]->click, buttons[i]->position);
     }
 }
 

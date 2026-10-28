@@ -34,7 +34,8 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
     button->click = sfSprite_create(textures->click_text);
     sfSprite_setPosition(button->click, *pos);
     button->display = button->base;
-    button->position = pos;
+    button->position.x = pos->x;
+    button->position.y = pos->y;
     return button;
 }    
 

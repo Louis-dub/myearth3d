@@ -55,6 +55,8 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
             rotate_map(w, earth->sphere);
         if (w->if_mouse_pressed == POINT)
             move_point(w, earth->sphere);
+        if (w->if_mouse_pressed == NONE)
+            btn_hover(&w->event, earth->buttons, w);
         break;
     case sfEvtKeyPressed:
         move_map(earth, w->event.key.code);

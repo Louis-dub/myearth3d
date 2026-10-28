@@ -28,5 +28,7 @@ window_t *init_window(void)
     w->set_view.x = 0.0;
     w->set_view.y = 0.0;
     w->if_mouse_pressed = NONE;
+    w->cursors[HAND] = sfCursor_createFromSystem(sfCursorHand);
+    w->cursors[ARROW] = sfCursor_createFromSystem(sfCursorArrow);
     return w;
 }
