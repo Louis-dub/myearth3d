@@ -20,8 +20,8 @@ window_t *init_window(void)
     w->size.x = 800;
     w->size.y = 600;
     w->view = sfView_create();
-    sfView_setCenter(w->view, (sfVector2f){400, 300});
-    sfView_setSize(w->view, (sfVector2f){800, 600});
+    sfView_setCenter(w->view, (sfVector2f){640, 360});
+    sfView_setSize(w->view, (sfVector2f){1280, 720});
     w->window = sfRenderWindow_create(v, "myearth3d", sfDefaultStyle, sfWindowed, NULL);
     sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
