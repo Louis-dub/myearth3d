@@ -9,6 +9,7 @@ This project will also add more editing options.
 - Move sphere with mouse
 - Move sphere with arrows
 - Move points
+- Reset view
 
 ## Overview
 
