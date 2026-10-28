@@ -9,15 +9,39 @@
 #include <CSFML/System.h>
 #include <CSFML/Window.h>
 #include <stdbool.h>
-#include <stdio.h>
+#include <math.h>
 
+#include "my_functions.h"
 #include "my_struct.h"
 #include "enums.h"
+
+static void reset_point(point_t *point)
+{
+    float r = point->spherical.x;
+    float theta = point->spherical.y;
+    float phi = point->spherical.z;
+    
+    point->cartesian = (sfVector3f){
+        r * sin(theta * M_PI / 180) * cos(phi * M_PI / 180),
+        r * sin(theta * M_PI / 180) * sin(phi * M_PI / 180),
+        r * cos(theta * M_PI / 180)
+    };
+}
 
 void btn_released(button_t *btn, earth_t *earth)
 {
     btn->display = btn->base;
     earth->btn_click = -1;
+    earth->w->set_view.x = 0.0;
+    earth->w->set_view.y = 0.0;
+    for (int i = 0; i < 614; i++) {
+        earth->sphere->points[i]->spherical.x = earth->sphere->r;
+        reset_point(earth->sphere->points[i]);
+        set_cartesian(&earth->sphere->points[i]->cartesian,
+                      &earth->sphere->points[i]->rotate_cartesian,
+                      earth->sphere);
+    }
+    resize_window(earth->w, earth->sphere);
 }
 
 void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w)
