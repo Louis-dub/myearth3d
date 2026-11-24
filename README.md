@@ -19,7 +19,7 @@ Here is a preview of the project:
 
 ## Technologies Used
 - **C**: For isometric calculations, memory management...
-- **CSFML**: For rendering the window and the various graphical elements. **Versions of the app prior to version v2.1 do not use the correct version of CSFML**
+- **CSFML (3.0)**: For rendering the window and the various graphical elements. **Versions of the app prior to version v2.1 do not use the correct version of CSFML**
 
 ## Installation
 
