@@ -31,11 +31,10 @@ static void set_text(button_t *button, char *text, sfFont *font)
     sfText_setString(button->text, text);
     sfText_setFillColor(button->text, sfBlack);
     rect = sfText_getLocalBounds(button->text);
-    sfText_setOrigin(button->text,
-                     (sfVector2f){
-                         rect.size.x / 2.0,
-                         rect.size.y / 2.0
-                     });
+    sfText_setOrigin(button->text, (sfVector2f){
+        rect.size.x / 2.0,
+        rect.size.y / 2.0
+    });
     sfText_setPosition(button->text,
                        (sfVector2f){
                            150,

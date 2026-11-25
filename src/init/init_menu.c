@@ -5,13 +5,35 @@
 ** Init menu
 */
 
-#include <CSFML/Graphics/Sprite.h>
-#include <CSFML/Graphics/Texture.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/Graphics/Rect.h>
+#include <CSFML/Graphics/Text.h>
+#include <CSFML/Graphics/Types.h>
+#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 
 #include "my_struct.h"
 
-menu_t *init_menu(void)
+static void create_title(menu_t *menu, sfFont *font, sfVector2u *w_size)
+{
+    sfFloatRect rect;
+
+    menu->title = sfText_create(font);
+    sfText_setCharacterSize(menu->title, 35);
+    sfText_setString(menu->title, "MyEarth3D");
+    sfText_setFillColor(menu->title, sfWhite);
+    rect = sfText_getLocalBounds(menu->title);
+    sfText_setOrigin(menu->title, (sfVector2f){
+        rect.size.x / 2.0,
+        rect.size.y / 2.0,
+    });
+    sfText_setPosition(menu->title, (sfVector2f){
+        w_size->x / 2.0,
+        w_size->y * 0.1
+    });    
+}
+
+menu_t *init_menu(sfFont *font, sfVector2u *w_size)
 {
     menu_t *menu = malloc(sizeof(menu_t));
     
