@@ -30,4 +30,9 @@ typedef enum type_square_s {
     SQUARE
 } type_square_t;
 
+typedef enum screen_s {
+    MENU,
+    EDIT
+} screen_t;
+
 #endif
