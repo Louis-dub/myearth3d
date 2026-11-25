@@ -15,7 +15,7 @@ menu_t *init_menu(void)
 {
     menu_t *menu = malloc(sizeof(menu_t));
     
-    menu->bg_text = sfTexture_createFromFile("assets/select_world.png", NULL);
+    menu->bg_text = sfTexture_createFromFile("assets/background.png", NULL);
     menu->bg_sprite = sfSprite_create(menu->bg_text);
     return menu;
 }
