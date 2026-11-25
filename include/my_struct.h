@@ -77,6 +77,11 @@ typedef struct button_texture_s {
     sfTexture *click_text;
 } button_texture_t;
 
+typedef struct menu_s {
+    sfTexture *bg_text;
+    sfSprite *bg_sprite;
+} menu_t;
+
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
