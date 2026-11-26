@@ -58,6 +58,7 @@ void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
 // btn function
 void btn_create_map(earth_t *earth);
 void btn_reset(earth_t *earth);
+void btn_go_menu(earth_t *earth);
 
 // display
 void display_map(sfRenderWindow *w, sphere_t *sphere);

@@ -16,6 +16,7 @@ typedef enum cursor_type_s {
 
 typedef enum button_click_s {
     CREATE_MAP,
+    GO_MENU,
     RESET,
     BTN_COUNT
 } button_click_t;

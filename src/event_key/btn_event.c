@@ -50,6 +50,12 @@ void btn_create_map(earth_t *earth)
     earth->screen = EDIT;
 }
 
+void btn_go_menu(earth_t *earth)
+{
+    btn_reset(earth);
+    earth->screen = MENU;
+}
+
 void btn_released(button_t *btn, earth_t *earth)
 {
     btn->display = btn->base;
