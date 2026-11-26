@@ -29,5 +29,6 @@ static void free_button(button_t *btn)
 
 void free_buttons(button_t *buttons[BTN_COUNT])
 {
-    free_button(buttons[RESET]);
+    for (int i = 0; i < BTN_COUNT; i++)
+        free_button(buttons[i]);
 }
