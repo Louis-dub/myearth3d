@@ -51,7 +51,7 @@ void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
-void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w);
+void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen_t mode);
 void btn_released(button_t *btn, earth_t *earth);
 void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
 

@@ -9,7 +9,6 @@
 #include <CSFML/System.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "my_struct.h"
 #include "enums.h"
@@ -24,9 +23,10 @@ button_texture_t *load_btn_texture(void)
     return btn_texture;
 }
 
-static void set_text(button_t *button, char *text, sfFont *font, bool mid)
+static void set_text(button_t *button, char *text, sfFont *font)
 {
     sfFloatRect rect;
+    sfFloatRect mid_btn = sfSprite_getLocalBounds(button->base);
 
     button->text = sfText_create(font);
     sfText_setCharacterSize(button->text, 25);
@@ -37,26 +37,20 @@ static void set_text(button_t *button, char *text, sfFont *font, bool mid)
         rect.size.x / 2.0,
         rect.size.y / 2.0
     });
-    if (mid)
-        sfText_setPosition(button->text, (sfVector2f){
-            button->position.x,
-            button->position.y - 5
-        });
-    else
-        sfText_setPosition(button->text, (sfVector2f){
-            150,
-            button->position.y + 20
-        });
+    sfText_setPosition(button->text, (sfVector2f){
+        button->position.x + mid_btn.size.x / 2.0,
+        button->position.y + mid_btn.size.y / 2.0 - 5
+    });
 }
 
-static void set_origin_middle(sfSprite *sprite)
+static void pos_is_middle(button_t *btn)
 {
-    sfFloatRect rect = sfSprite_getLocalBounds(sprite);
-    
-    sfSprite_setOrigin(sprite, (sfVector2f){
-        rect.size.x / 2.0,
-        rect.size.y / 2.0
-    });
+    sfFloatRect rect = sfSprite_getLocalBounds(btn->base);
+
+    btn->position.x -= (rect.size.x / 2.0);
+    btn->position.y -= (rect.size.y / 2.0);
+    btn->og_pos.x = btn->position.x;
+    btn->og_pos.y = btn->position.y;
 }
 
 static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos, sfFont *font)
@@ -70,16 +64,12 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
     button->base = sfSprite_create(textures->base_text);
     button->hover = sfSprite_create(textures->hover_text);
     button->click = sfSprite_create(textures->click_text);
-    if (strcmp("CREATE MAP", text) == 0) {
-        set_origin_middle(button->base);
-        set_origin_middle(button->hover);
-        set_origin_middle(button->click);
-        set_text(button, text, font, true);
-    } else
-        set_text(button, text, font, false);
-    sfSprite_setPosition(button->base, *pos);
-    sfSprite_setPosition(button->hover, *pos);
-    sfSprite_setPosition(button->click, *pos);
+    if (strcmp("CREATE MAP", text) == 0)
+        pos_is_middle(button);
+    set_text(button, text, font);
+    sfSprite_setPosition(button->base, button->position);
+    sfSprite_setPosition(button->hover, button->position);
+    sfSprite_setPosition(button->click, button->position);
     button->display = button->base;
     return button;
 }    

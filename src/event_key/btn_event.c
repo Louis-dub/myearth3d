@@ -10,6 +10,7 @@
 #include <CSFML/Window.h>
 #include <stdbool.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
@@ -47,14 +48,16 @@ void btn_released(button_t *btn, earth_t *earth)
     set_pos_btn(earth->buttons, &earth->w->set_view);
 }
 
-void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w)
+void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen_t mode)
 {
     int x = event->mouseMove.position.x + w->set_view.x;
     int y = event->mouseMove.position.y + w->set_view.y;
     int xb = 0;
     int yb = 0;
-
-    for (int i = 0; i < BTN_COUNT; i++) {
+    int start = mode == MENU ? 0 : 1;
+    int end = mode == EDIT ? BTN_COUNT : 1;
+    
+    for (int i = start; i < end; i++) {
         xb = buttons[i]->position.x;
         yb = buttons[i]->position.y;
         if (xb <= x && x <= xb + 300 && yb <= y && y <= yb + 48) {

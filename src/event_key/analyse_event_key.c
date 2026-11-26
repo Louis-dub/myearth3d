@@ -80,7 +80,7 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
         if (w->if_mouse_pressed == POINT)
             move_point(w, earth->sphere);
         if (w->if_mouse_pressed == NONE && earth->btn_click == -1)
-            btn_hover(&w->event, earth->buttons, w);
+            btn_hover(&w->event, earth->buttons, w, earth->screen);
         break;
     case sfEvtKeyPressed:
         move_map(earth, w->event.key.code);
