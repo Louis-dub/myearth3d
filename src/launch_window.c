@@ -22,7 +22,7 @@ int launch_window(void)
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
         if (earth->screen == MENU)
-            display_menu(earth->w->window, earth->menu);
+            display_menu(earth->w->window, earth->menu, earth->buttons[CREATE_MAP]);
         else {
             display_map(earth->w->window, earth->sphere);
             display_button(earth);
