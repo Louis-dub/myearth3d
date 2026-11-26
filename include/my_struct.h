@@ -14,6 +14,9 @@
 
 #include "enums.h"
 
+
+typedef struct earth_s earth_t;
+
 typedef struct color_s {
     sfColor color;
     sfTexture *texture;
@@ -67,6 +70,7 @@ typedef struct button_s {
     sfSprite *hover;
     sfSprite *click;
     sfSprite *display;
+    void (*function)(earth_t*);
     sfVector2f position;
     sfVector2f og_pos;
 } button_t;

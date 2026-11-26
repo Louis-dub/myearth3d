@@ -10,7 +10,6 @@
 #include <CSFML/Window.h>
 #include <stdbool.h>
 #include <math.h>
-#include <stdio.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
@@ -29,10 +28,8 @@ static void reset_point(point_t *point)
     };
 }
 
-void btn_released(button_t *btn, earth_t *earth)
+void btn_reset(earth_t *earth)
 {
-    btn->display = btn->base;
-    earth->btn_click = -1;
     earth->w->set_view.x = 0.0;
     earth->w->set_view.y = 0.0;
     earth->sphere->zoom = 200;
@@ -46,6 +43,18 @@ void btn_released(button_t *btn, earth_t *earth)
     apply_rotation(earth->sphere);
     resize_window(earth->w, earth->sphere);
     set_pos_btn(earth->buttons, &earth->w->set_view);
+}
+
+void btn_create_map(earth_t *earth)
+{
+    earth->screen = EDIT;
+}
+
+void btn_released(button_t *btn, earth_t *earth)
+{
+    btn->display = btn->base;
+    earth->btn_click = -1;
+    btn->function(earth);
 }
 
 void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen_t mode)

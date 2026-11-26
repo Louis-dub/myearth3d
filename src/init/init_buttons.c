@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "my_functions.h"
 #include "my_struct.h"
 #include "enums.h"
 
@@ -53,7 +54,8 @@ static void pos_is_middle(button_t *btn)
     btn->og_pos.y = btn->position.y;
 }
 
-static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos, sfFont *font)
+static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos, sfFont *font,
+                               void (*function)(earth_t*))
 {
     button_t *button = malloc(sizeof(button_t));
 
@@ -71,14 +73,20 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
     sfSprite_setPosition(button->hover, button->position);
     sfSprite_setPosition(button->click, button->position);
     button->display = button->base;
+    button->function = function;
     return button;
 }    
 
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth)
 {
+    void (*btn_functions[2])(earth_t *earth) = {
+        btn_create_map, btn_reset
+    };
+    
     buttons[CREATE_MAP] = create_button("CREATE MAP", earth->btn_textures, &(sfVector2f){
         earth->w->size.x / 2.0,
         earth->w->size.y * 0.25
-    }, earth->font);
-    buttons[RESET] = create_button("RESET", earth->btn_textures, &(sfVector2f){0.0, 0.0}, earth->font);
+    }, earth->font, btn_functions[0]);
+    buttons[RESET] = create_button("RESET", earth->btn_textures, &(sfVector2f){0.0, 0.0}, earth->font,
+                                   btn_functions[1]);
 }

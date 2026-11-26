@@ -55,6 +55,10 @@ void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen
 void btn_released(button_t *btn, earth_t *earth);
 void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
 
+// btn function
+void btn_create_map(earth_t *earth);
+void btn_reset(earth_t *earth);
+
 // display
 void display_map(sfRenderWindow *w, sphere_t *sphere);
 void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
