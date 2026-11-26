@@ -15,6 +15,5 @@ void analyse_event(earth_t *earth, window_t *w)
 {
     if (w->event.type == sfEvtClosed)
         sfRenderWindow_close(w->window);
-    if (earth->screen == EDIT)
-        analyse_event_key_mouse(earth, w);
+    analyse_event_key_mouse(earth, w);
  }
