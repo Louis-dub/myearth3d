@@ -6,12 +6,10 @@
  */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Sprite.h>
 #include <CSFML/System.h>
-#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "my_struct.h"
 #include "enums.h"
@@ -26,7 +24,7 @@ button_texture_t *load_btn_texture(void)
     return btn_texture;
 }
 
-static void set_text(button_t *button, char *text, sfFont *font)
+static void set_text(button_t *button, char *text, sfFont *font, bool mid)
 {
     sfFloatRect rect;
 
@@ -39,11 +37,16 @@ static void set_text(button_t *button, char *text, sfFont *font)
         rect.size.x / 2.0,
         rect.size.y / 2.0
     });
-    sfText_setPosition(button->text,
-                       (sfVector2f){
-                           150,
-                           button->position.y + 20
-                       });
+    if (mid)
+        sfText_setPosition(button->text, (sfVector2f){
+            button->position.x,
+            button->position.y - 5
+        });
+    else
+        sfText_setPosition(button->text, (sfVector2f){
+            150,
+            button->position.y + 20
+        });
 }
 
 static void set_origin_middle(sfSprite *sprite)
@@ -64,7 +67,6 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
     button->position.y = pos->y;
     button->og_pos.x = pos->x;
     button->og_pos.y = pos->y;
-    set_text(button, text, font);
     button->base = sfSprite_create(textures->base_text);
     button->hover = sfSprite_create(textures->hover_text);
     button->click = sfSprite_create(textures->click_text);
@@ -72,7 +74,9 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
         set_origin_middle(button->base);
         set_origin_middle(button->hover);
         set_origin_middle(button->click);
-    }
+        set_text(button, text, font, true);
+    } else
+        set_text(button, text, font, false);
     sfSprite_setPosition(button->base, *pos);
     sfSprite_setPosition(button->hover, *pos);
     sfSprite_setPosition(button->click, *pos);
