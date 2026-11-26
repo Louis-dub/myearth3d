@@ -7,6 +7,7 @@
 
 #include <CSFML/Graphics.h>
 #include <CSFML/System.h>
+#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 
 #include "my_struct.h"
@@ -63,5 +64,9 @@ static button_t *create_button(char *text, button_texture_t *textures, sfVector2
 
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth)
 {
+    buttons[CREATE_MAP] = create_button("CREATE MAP", earth->btn_textures, &(sfVector2f){
+        earth->w->size.x / 2.0,
+        earth->w->size.y / 2.0
+    }, earth->font);
     buttons[RESET] = create_button("RESET", earth->btn_textures, &(sfVector2f){0.0, 0.0}, earth->font);
 }
