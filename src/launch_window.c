@@ -6,10 +6,12 @@
 */
 
 #include <CSFML/Graphics.h>
+#include <CSFML/Graphics/RenderWindow.h>
 #include <stddef.h>
 
 #include "my_functions.h"
 #include "my_struct.h"
+#include "enums.h"
 
 int launch_window(void)
 {
@@ -19,8 +21,12 @@ int launch_window(void)
         sfRenderWindow_clear(earth->w->window, (sfColor){120, 120, 120});
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
-        display_map(earth->w->window, earth->sphere);
-        display_button(earth);
+        if (earth->screen == MENU)
+            display_menu(earth->w->window, earth->menu);
+        else {
+            display_map(earth->w->window, earth->sphere);
+            display_button(earth);
+        }
         sfRenderWindow_display(earth->w->window);
     }
     free_earth(earth);

@@ -26,6 +26,7 @@ square_t **create_squares(point_t **points, sphere_t *sphere);
 void init_textures(sphere_t *sphere);
 button_texture_t *load_btn_texture(void);
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth);
+menu_t *init_menu(sfFont *font, sfVector2u *w_size);
 
 // free
 void free_earth(earth_t *earth);
@@ -57,5 +58,6 @@ void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
 void display_map(sfRenderWindow *w, sphere_t *sphere);
 void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 void display_button(earth_t *earth);
+void display_menu(sfRenderWindow *w, menu_t *menu);
 
 #endif

@@ -8,7 +8,6 @@
 #ifndef INCLUDED_MY_STRUCT_H
     #define INCLUDED_MY_STRUCT_H
     #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Types.h>
     #include <CSFML/System.h>
     #include <CSFML/Window.h>
     #include <stdbool.h>
@@ -87,6 +86,7 @@ typedef struct menu_s {
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
+    menu_t *menu;
     screen_t screen;
     button_texture_t *btn_textures;
     button_t *buttons[BTN_COUNT];

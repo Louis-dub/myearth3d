@@ -6,10 +6,6 @@
 */
 
 #include <CSFML/Graphics.h>
-#include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Text.h>
-#include <CSFML/Graphics/Types.h>
-#include <CSFML/System/Vector2.h>
 #include <stdlib.h>
 
 #include "my_struct.h"
@@ -19,9 +15,11 @@ static void create_title(menu_t *menu, sfFont *font, sfVector2u *w_size)
     sfFloatRect rect;
 
     menu->title = sfText_create(font);
-    sfText_setCharacterSize(menu->title, 35);
+    sfText_setCharacterSize(menu->title, 60);
     sfText_setString(menu->title, "MyEarth3D");
     sfText_setFillColor(menu->title, sfWhite);
+    sfText_setOutlineThickness(menu->title, 1.0);
+    sfText_setOutlineColor(menu->title, sfBlack);
     rect = sfText_getLocalBounds(menu->title);
     sfText_setOrigin(menu->title, (sfVector2f){
         rect.size.x / 2.0,
@@ -39,5 +37,7 @@ menu_t *init_menu(sfFont *font, sfVector2u *w_size)
     
     menu->bg_text = sfTexture_createFromFile("assets/background.png", NULL);
     menu->bg_sprite = sfSprite_create(menu->bg_text);
+    sfSprite_setPosition(menu->bg_sprite, (sfVector2f){0.0, 0.0});
+    create_title(menu, font, w_size);
     return menu;
 }
