@@ -35,6 +35,7 @@ void free_square(square_t *square);
 void free_sphere(sphere_t *sphere);
 void free_btn_text(button_texture_t *btn_texture);
 void free_buttons(button_t *buttons[BTN_COUNT]);
+void free_menu(menu_t *menu);
 
 // maths
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
