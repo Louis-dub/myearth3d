@@ -34,7 +34,8 @@ typedef enum type_square_s {
 
 typedef enum screen_s {
     MENU,
-    EDIT
+    EDIT,
+    SCREEN_COUNT
 } screen_t;
 
 #endif

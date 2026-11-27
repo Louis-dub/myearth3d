@@ -62,6 +62,7 @@ typedef struct window_s {
     sfVector2i coor_mouse_pressed;
     int touch_point;
     sfCursor *cursors[TYPE_COUNT];
+    sfColor background[SCREEN_COUNT];
 } window_t;
 
 typedef struct button_s {

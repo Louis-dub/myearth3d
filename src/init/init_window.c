@@ -30,5 +30,7 @@ window_t *init_window(void)
     w->if_mouse_pressed = NONE;
     w->cursors[HAND] = sfCursor_createFromSystem(sfCursorHand);
     w->cursors[ARROW] = sfCursor_createFromSystem(sfCursorArrow);
+    w->background[MENU] = (sfColor){34, 12, 6};
+    w->background[EDIT] = (sfColor){120, 120, 120};
     return w;
 }

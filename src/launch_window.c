@@ -18,7 +18,7 @@ int launch_window(void)
     earth_t *earth = init_earth();
 
     while (sfRenderWindow_isOpen(earth->w->window)) {
-        sfRenderWindow_clear(earth->w->window, (sfColor){120, 120, 120});
+        sfRenderWindow_clear(earth->w->window, earth->w->background[earth->screen]);
         while (sfRenderWindow_pollEvent(earth->w->window, &earth->w->event))
             analyse_event(earth, earth->w);
         if (earth->screen == MENU)
