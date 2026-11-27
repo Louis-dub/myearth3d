@@ -12,8 +12,6 @@
 
 void free_menu(menu_t *menu)
 {
-    sfTexture_destroy(menu->bg_text);
-    sfSprite_destroy(menu->bg_sprite);
     sfText_destroy(menu->title);
     free(menu);
 }

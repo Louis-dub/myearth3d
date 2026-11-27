@@ -31,13 +31,11 @@ static void create_title(menu_t *menu, sfFont *font, sfVector2u *w_size)
     });    
 }
 
-menu_t *init_menu(sfFont *font, sfVector2u *w_size)
+menu_t *init_menu(sfFont *font, sfVector2u *w_size, button_t *btn)
 {
     menu_t *menu = malloc(sizeof(menu_t));
-    
-    menu->bg_text = sfTexture_createFromFile("assets/background.png", NULL);
-    menu->bg_sprite = sfSprite_create(menu->bg_text);
-    sfSprite_setPosition(menu->bg_sprite, (sfVector2f){0.0, 0.0});
+
+    menu->btn_create = btn;
     create_title(menu, font, w_size);
     return menu;
 }

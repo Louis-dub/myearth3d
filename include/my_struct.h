@@ -83,9 +83,8 @@ typedef struct button_texture_s {
 } button_texture_t;
 
 typedef struct menu_s {
-    sfTexture *bg_text;
-    sfSprite *bg_sprite;
     sfText *title;
+    button_t *btn_create;
 } menu_t;
 
 typedef struct earth_s {

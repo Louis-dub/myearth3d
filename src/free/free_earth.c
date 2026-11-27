@@ -15,9 +15,9 @@ void free_earth(earth_t *earth)
 {
     free_window(earth->w);
     free_sphere(earth->sphere);
-    free_menu(earth->menu);
     free_btn_text(earth->btn_textures);
     free_buttons(earth->buttons);
     sfFont_destroy(earth->font);
+    free_menu(earth->menu);
     free(earth);
 }

@@ -26,7 +26,7 @@ square_t **create_squares(point_t **points, sphere_t *sphere);
 void init_textures(sphere_t *sphere);
 button_texture_t *load_btn_texture(void);
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth);
-menu_t *init_menu(sfFont *font, sfVector2u *w_size);
+menu_t *init_menu(sfFont *font, sfVector2u *w_size, button_t *btn);
 
 // free
 void free_earth(earth_t *earth);
