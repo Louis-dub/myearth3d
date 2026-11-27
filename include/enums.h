@@ -15,6 +15,8 @@ typedef enum cursor_type_s {
 } cursor_type_t;
 
 typedef enum button_click_s {
+    CREATE_MAP,
+    GO_MENU,
     RESET,
     BTN_COUNT
 } button_click_t;
@@ -29,5 +31,11 @@ typedef enum type_square_s {
     TRIANGLE,
     SQUARE
 } type_square_t;
+
+typedef enum screen_s {
+    MENU,
+    EDIT,
+    SCREEN_COUNT
+} screen_t;
 
 #endif

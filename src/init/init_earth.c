@@ -10,6 +10,7 @@
 
 #include "my_functions.h"
 #include "my_struct.h"
+#include "enums.h"
 
 earth_t *init_earth(void)
 {
@@ -17,9 +18,11 @@ earth_t *init_earth(void)
 
     earth->w = init_window();
     earth->sphere = init_sphere(&earth->w->size);
+    earth->screen = MENU;
     earth->btn_textures = load_btn_texture();
     earth->btn_click = -1;
     earth->font = sfFont_createFromFile("assets/Minecraft.ttf");
     init_button(earth->buttons, earth);
+    earth->menu = init_menu(earth->font, &earth->w->size, earth->buttons[CREATE_MAP]);
     return earth;
 }

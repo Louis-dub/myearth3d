@@ -12,6 +12,7 @@ SRC = $(wildcard src/*.c) \
 	  $(wildcard src/free/*.c) \
 	  $(wildcard src/maths/*.c) \
 	  $(wildcard src/event_key/*.c) \
+	  $(wildcard src/event_key/btn_event/*.c) \
 	  $(wildcard src/display/*.c)
 
 OBJ = $(SRC:.c=.o)

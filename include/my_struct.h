@@ -14,6 +14,9 @@
 
 #include "enums.h"
 
+
+typedef struct earth_s earth_t;
+
 typedef struct color_s {
     sfColor color;
     sfTexture *texture;
@@ -59,6 +62,7 @@ typedef struct window_s {
     sfVector2i coor_mouse_pressed;
     int touch_point;
     sfCursor *cursors[TYPE_COUNT];
+    sfColor background[SCREEN_COUNT];
 } window_t;
 
 typedef struct button_s {
@@ -67,8 +71,10 @@ typedef struct button_s {
     sfSprite *hover;
     sfSprite *click;
     sfSprite *display;
+    void (*function)(earth_t*);
     sfVector2f position;
     sfVector2f og_pos;
+    sfFloatRect rect;
 } button_t;
 
 typedef struct button_texture_s {
@@ -77,9 +83,16 @@ typedef struct button_texture_s {
     sfTexture *click_text;
 } button_texture_t;
 
+typedef struct menu_s {
+    sfText *title;
+    button_t *btn_create;
+} menu_t;
+
 typedef struct earth_s {
     window_t *w;
     sphere_t *sphere;
+    menu_t *menu;
+    screen_t screen;
     button_texture_t *btn_textures;
     button_t *buttons[BTN_COUNT];
     int btn_click;

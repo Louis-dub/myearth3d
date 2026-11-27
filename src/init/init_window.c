@@ -20,8 +20,8 @@ window_t *init_window(void)
     w->size.x = 800;
     w->size.y = 600;
     w->view = sfView_create();
-    sfView_setCenter(w->view, (sfVector2f){640, 360});
-    sfView_setSize(w->view, (sfVector2f){1280, 720});
+    sfView_setCenter(w->view, (sfVector2f){400, 300});
+    sfView_setSize(w->view, (sfVector2f){800, 600});
     w->window = sfRenderWindow_create(v, "myearth3d", sfDefaultStyle, sfWindowed, NULL);
     sfRenderWindow_setView(w->window, w->view);
     sfRenderWindow_setFramerateLimit(w->window, 60);
@@ -30,5 +30,7 @@ window_t *init_window(void)
     w->if_mouse_pressed = NONE;
     w->cursors[HAND] = sfCursor_createFromSystem(sfCursorHand);
     w->cursors[ARROW] = sfCursor_createFromSystem(sfCursorArrow);
+    w->background[MENU] = (sfColor){34, 12, 6};
+    w->background[EDIT] = (sfColor){120, 120, 120};
     return w;
 }

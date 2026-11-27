@@ -18,5 +18,6 @@ void free_earth(earth_t *earth)
     free_btn_text(earth->btn_textures);
     free_buttons(earth->buttons);
     sfFont_destroy(earth->font);
+    free_menu(earth->menu);
     free(earth);
 }

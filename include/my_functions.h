@@ -26,6 +26,7 @@ square_t **create_squares(point_t **points, sphere_t *sphere);
 void init_textures(sphere_t *sphere);
 button_texture_t *load_btn_texture(void);
 void init_button(button_t *buttons[BTN_COUNT], earth_t *earth);
+menu_t *init_menu(sfFont *font, sfVector2u *w_size, button_t *btn);
 
 // free
 void free_earth(earth_t *earth);
@@ -34,6 +35,7 @@ void free_square(square_t *square);
 void free_sphere(sphere_t *sphere);
 void free_btn_text(button_texture_t *btn_texture);
 void free_buttons(button_t *buttons[BTN_COUNT]);
+void free_menu(menu_t *menu);
 
 // maths
 sfVector2i project_iso_point(sfVector3f *cartesian, sphere_t *sphere, sfVector2u *size);
@@ -45,17 +47,24 @@ void depth(square_t **squares, sphere_t *sphere);
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
 void resize_window(window_t *w, sphere_t *sphere);
+void replace_menu_element(menu_t *menu, sfVector2u *size);
 void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
-void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w);
+// btn_event
+void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen_t mode);
 void btn_released(button_t *btn, earth_t *earth);
 void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
+// btn function
+void btn_create_map(earth_t *earth);
+void btn_reset(earth_t *earth);
+void btn_go_menu(earth_t *earth);
 
 // display
 void display_map(sfRenderWindow *w, sphere_t *sphere);
 void display_xyz(sfRenderWindow *w, sphere_t *sphere, sfVector2u size);
 void display_button(earth_t *earth);
+void display_menu(sfRenderWindow *w, menu_t *menu);
 
 #endif

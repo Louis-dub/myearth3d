@@ -15,7 +15,7 @@
 
 void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view)
 {
-    for (int i = 0; i < BTN_COUNT; i++) {
+    for (int i = 1; i < BTN_COUNT; i++) {
         buttons[i]->position.x = buttons[i]->og_pos.x + set_view->x;
         buttons[i]->position.y = buttons[i]->og_pos.y + set_view->y;
         sfSprite_setPosition(buttons[i]->base, buttons[i]->position);

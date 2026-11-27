@@ -7,6 +7,7 @@
 
 #include <CSFML/Graphics.h>
 
+#include "enums.h"
 #include "my_functions.h"
 #include "my_struct.h"
 
