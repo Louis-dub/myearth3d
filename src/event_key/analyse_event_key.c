@@ -62,6 +62,7 @@ void analyse_event_key_mouse(earth_t *earth, window_t *w)
     switch (w->event.type) {
     case sfEvtResized:
         resize_window(w, earth->sphere);
+        replace_menu_element(earth->menu, &earth->w->size);
         break;
     case sfEvtMouseWheelScrolled:
         mouse_scroll(w, earth->sphere);

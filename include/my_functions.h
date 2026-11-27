@@ -47,14 +47,15 @@ void depth(square_t **squares, sphere_t *sphere);
 // event_key
 void analyse_event_key_mouse(earth_t *earth, window_t *w);
 void resize_window(window_t *w, sphere_t *sphere);
+void replace_menu_element(menu_t *menu, sfVector2u *size);
 void mouse_scroll(window_t *w, sphere_t *sphere);
 void rotate_map(window_t *w, sphere_t *sphere);
 void move_point(window_t *w, sphere_t *sphere);
 void move_map(earth_t *earth, sfKeyCode code);
+// btn_event
 void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen_t mode);
 void btn_released(button_t *btn, earth_t *earth);
 void set_pos_btn(button_t *buttons[BTN_COUNT], sfVector2f *set_view);
-
 // btn function
 void btn_create_map(earth_t *earth);
 void btn_reset(earth_t *earth);

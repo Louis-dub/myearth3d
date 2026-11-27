@@ -74,6 +74,7 @@ typedef struct button_s {
     void (*function)(earth_t*);
     sfVector2f position;
     sfVector2f og_pos;
+    sfFloatRect rect;
 } button_t;
 
 typedef struct button_texture_s {

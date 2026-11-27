@@ -53,6 +53,7 @@ static void pos_is_middle(button_t *btn)
     btn->position.y -= (rect.size.y / 2.0);
     btn->og_pos.x = btn->position.x;
     btn->og_pos.y = btn->position.y;
+    btn->rect = rect;
 }
 
 static button_t *create_button(char *text, button_texture_t *textures, sfVector2f *pos, sfFont *font,
