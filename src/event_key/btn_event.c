@@ -71,6 +71,7 @@ void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen
     int yb = 0;
     int start = mode == MENU ? 0 : 1;
     int end = mode == EDIT ? BTN_COUNT : 1;
+    bool not_hand = true;
     
     for (int i = start; i < end; i++) {
         xb = buttons[i]->position.x;
@@ -78,9 +79,11 @@ void btn_hover(sfEvent *event, button_t *buttons[BTN_COUNT], window_t *w, screen
         if (xb <= x && x <= xb + 300 && yb <= y && y <= yb + 48) {
             buttons[i]->display = buttons[i]->hover;
             sfRenderWindow_setMouseCursor(w->window, w->cursors[HAND]);
+            not_hand = false;
         } else {
             buttons[i]->display = buttons[i]->base;
-            sfRenderWindow_setMouseCursor(w->window, w->cursors[ARROW]);
+            if (not_hand)
+                sfRenderWindow_setMouseCursor(w->window, w->cursors[ARROW]);
         }
     }
 }
